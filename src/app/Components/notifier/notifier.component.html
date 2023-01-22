@@ -1,0 +1,20 @@
+<div #notierEL class="notier-container" [ngClass]="isActive ? 'active': ''">
+    <div class="notifier-content">
+        <h3>{{header}}</h3>
+        <p>{{message}}</p>
+    </div>
+    <div class="notifier-icon">
+        <i *ngIf="notifierIcon === 'success'" class="fa-solid fa-circle-check"></i>
+        <i *ngIf="notifierIcon === 'error'" class="fa-solid fa-circle-xmark"></i>
+        <i *ngIf="notifierIcon === 'info'" class="fa-solid fa-circle-info"></i>
+        <i *ngIf="notifierIcon === 'warning'" class="fa-solid fa-circle-exclamation"></i>
+    </div>
+    <div class="notifier-close" (click)="onCloseNotifier()">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+</div>
+<!-- 
+success  #49D663
+error #FE365A
+infor #2C87EB
+warning #FFBF27 -->

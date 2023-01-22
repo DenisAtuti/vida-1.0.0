@@ -1,0 +1,202 @@
+.player-container{
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    position: relative;
+    display:flex;
+    justify-content:center;
+}
+.player-container .video-wrapper{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    right:0;
+    left:0;
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+.player-container video{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    object-fit: contain;
+    border: none;
+}
+.player-container video.portrait{
+    object-fit: cover;
+    transition: all 1.5s;
+}
+.player-container .buffer{
+    position: absolute;
+    inset: 0;                                                    
+    height:100%;
+    width:100%;
+    background-color:transparent;
+    font-size:4rem;
+    color:var(--primary-color);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.player-container .controls-container{
+    position:absolute;
+    bottom:3rem;
+    width: 90%;
+    background-color:rgba(0, 0, 0, 0.5);
+    height:10rem;
+    border-radius: 1rem;
+    display: flex;
+    gap:1rem;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: #fff;
+    opacity:0;
+    pointer-events: none;
+    transition: opacity 0.4s
+}
+.player-container .controls-container.active{
+    opacity:1;
+    pointer-events: auto;
+    transition: opacity 0.4s
+}
+.player-container .controls-container:hover{
+    opacity:1;
+    pointer-events: auto;
+    transition: opacity 0.4s
+}
+.player-container .controls-container .controls{
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.player-container .controls-container .controls .time{
+    font-size: 2rem;
+}
+
+
+.player-container .controls-container .controls .play-pause button{
+    font-size: 2rem;
+    outline: none;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    cursor: pointer;
+    border: solid 0.3rem var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    transition:transform 0.4s;
+    transform: scale(0.9);
+    aspect-ratio: 1/1;
+}
+.player-container .controls-container .controls .play-pause button:hover{
+    transform: scale(1.2);
+    transition:transform 0.4s;
+}
+
+.player-container .controls-container .controls .medias{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    gap:4rem;
+    font-size: 2rem;
+}
+.player-container .controls-container .controls .medias .media{
+    cursor: pointer;
+    transition: color 0.4s
+}
+.player-container .controls-container .controls .medias .media:hover{
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: color 0.4s
+}
+.player-container .controls-container .controls .medias button{
+    cursor: pointer;
+    outline: none;
+    background-color:transparent;
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    transition: color 0.4s
+}
+
+
+.player-container .controls-container .controls .medias button:hover{
+    color: var(--primary-color);
+    transition: color 0.4s
+}
+
+.player-container .controls-container .timeline-container {
+    width: 100%;
+    height: 1rem;
+    margin-inline: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player-container .controls-container .timeline-container:hover .timeline{
+    height: 100%;
+}
+.player-container .controls-container .timeline-container .timeline{
+    background-color: rgba(100, 100, 100, 0.5);
+    height: 0.5rem;
+    width: 100%;
+    position: relative;
+}
+.player-container .controls-container .timeline-container .timeline::before{
+    content: "";
+    position:absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: calc(100% - var(--preview-position) * 100%);
+    background-color: rgb(150, 150, 150);
+    display: none;
+}
+.player-container .controls-container .timeline-container .timeline::after{
+    content: "";
+    position:absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: calc(100% - var(--progress-positon) * 100%);
+    background-color: var(--primary-color);
+}
+.player-container .controls-container .timeline-container .timeline .timeline-thumb{
+    --scale:0;
+    position: absolute;
+    transform: translateX(-50%) scale(var(--scale));
+    height: 200%;
+    top: -50%;
+    left: calc(var(--progress-positon) * 100%);
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transition: transform 150ms ease-in-out;
+    aspect-ratio: 1/1;
+}
+ 
+.player-container .controls-container .timeline-container:hover .timeline::before{
+    display: block;
+}
+.player-container .controls-container .timeline-container:hover .timeline{
+    height: 100%;
+}
+.player-container .controls-container .timeline-container:hover .timeline .timeline-thumb{
+    --scale:1
+}
+
+@media screen and (max-width: 425px) {
+    .player-container .controls-container .controls .medias{
+        gap:1.5rem;
+    }
+} 
+

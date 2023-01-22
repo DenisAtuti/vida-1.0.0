@@ -1,0 +1,74 @@
+app-nav{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    z-index:100;
+}
+.main-container{
+    /* background-color: green; */
+    display:flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+.main-container app-content{
+    /* background-color: red; */
+    width:30vw
+}
+.main-container .main-post-container{
+    width:40vw;
+    position: relative;
+}
+
+.main-container .main-post-container app-comment{
+    background-color: transparent;
+    pointer-events: none;
+    position:absolute;
+    bottom: 0;
+    left:0;
+    height: 100%;
+    width: 100%;
+}
+
+
+app-log{
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: none;
+    z-index: 200;
+}
+app-landing-page{
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: auto;
+    z-index: 200;
+}
+app-notifier{
+    position:absolute;
+    bottom: 15vh;
+    left: 5vw;
+    z-index: 300;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .main-container app-content{
+        display:none;
+    }
+    .main-container .main-post-container{
+        width: 100vw;
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,50 @@
+<div class="content-container">
+    <div class="content-wrapper">
+        <div class="content-menu">
+            <a routerLink="/" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact:true}">
+                <div class="for-you">
+                    <i class="fa-solid fa-house"></i>
+                    <span>For You</span>
+                </div>
+            </a>
+            <a (click)="navigateTo('following')" routerLinkActive="activeLink">
+                <div class="following">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Following</span>
+                </div>
+            </a>
+            <a (click)="navigateTo('liked')" routerLinkActive="activeLink">
+                <div class="liked">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Liked</span>
+                </div>
+            </a>
+        </div>
+    
+        <div class="content-log">
+            <div class="login-wrapper">
+                <p>Log in to follow models, like videos and add comments.</p>
+                <button *ngIf="!isLogged" (click)="onLoginBtnClicked()">Login</button>
+                <button *ngIf="isLogged"  (click)="onLogoutBtnClicked()">Logout</button>
+            </div>
+            <div class="logout-wrapper active">
+                <p>Enjoy your browsing experience</p>
+                <button>Logout</button>
+            </div>
+        </div>
+    
+        <div class="content-account">
+            <p>Suggested Accounts</p>
+            <div [routerLink]="['/affiliate/model/', account.username]" class="account" *ngFor="let account of accounts">
+                <div class="image">
+                    <img [src]="'https://robohash.org/' + account.username" alt="">
+                </div>
+                <p>{{account.username}}</p>
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>

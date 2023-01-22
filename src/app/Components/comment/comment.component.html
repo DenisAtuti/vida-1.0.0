@@ -1,0 +1,83 @@
+<div class="comment-container" [ngClass]="{active: isActive}">
+    <div class="header">Comments {{comments.length}}</div>
+    <div class="comments-wrapper" *ngIf="comments.length >= 1; else noComment">
+        <div class="comment-list"  *ngFor="let comment of reverseComments()">
+            <div class="comment">
+                <div class="image">
+                    <img src="https://robohash.org/keta" alt="" srcset="">
+                </div>
+                <div class="header">
+                    <div class="username">{{comment.username}}</div>
+                    <p class="text">{{comment.text}}</p>
+                    <div class="btns">
+                        <button #btn class="reply-btn" (click)="replyBtnClicked($event, comment.id)">Reply</button>
+                        <button class="view-reply-btn" (click)="openReplyModel($event, comment.id)">view replies({{comment.repliesCount}})</button>
+                    </div>
+                </div>
+                <div class="like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+            </div>
+            <div class="reply-container" #replyContainers>
+                <div class="reply" *ngFor="let reply of reverseReplies()">
+                    <div class="image">
+                        <img src="https://robohash.org/keta" alt="">
+                    </div>
+                    <div class="header">
+                        <div class="username">{{reply.username}}</div>
+                        <div class="text">{{reply.reply}}</div>
+                    </div>
+                    <div class="like-btn">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                </div> 
+                <div class="no-repy" *ngIf="replies.length <= 0">
+                    <p>Be the first to reply</p> 
+                </div>
+            </div>      
+        </div>   
+    </div>
+    <ng-template #noComment>
+        <div class="no-comment">
+            <p>Be the first to comment</p> 
+        </div>
+    </ng-template>
+    <div class="comments-input">             
+        <div class="profile">
+            <div class="image">
+                <img src="https://robohash.org/keta" alt="">
+            </div>
+        </div>
+        <form (ngSubmit)="onSubmit()" #commentForm="ngForm" #commentInput id="commenting" [ngClass]="{active: isInput}">
+            <input 
+                type="text" 
+                name="comment" 
+                id="comment" 
+                ngModel
+                required
+                #comment
+                placeholder="add comment . . . .">
+            <button type="submit"  [disabled]="!commentForm.valid">
+                <i class="fa-regular fa-paper-plane"></i>
+            </button>
+        </form>
+        <form (ngSubmit)="onSubmitReply()" #replyForm="ngForm" #replyInput id="replying" [ngClass]="{active: !isInput}">
+            <!-- <input type="text" name="" id="" #reply [value]="usernameText" autofocus (keyup)="checkingReplyInputValue(reply.value)"> -->
+            <input 
+                type="text" 
+                name="reply" 
+                id="reply" 
+                ngModel
+                required
+                #reply 
+                [(value)]="usernameText" 
+                (keyup)="checkingReplyInputValue(reply.value)">
+            <button type="submit">
+                <i class="fa-regular fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+    <div class="close" (click)="closeCommentModel()" >
+        <i class="fa-regular fa-circle-xmark"></i>
+    </div>
+</div>

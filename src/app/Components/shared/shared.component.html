@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="no-content-wrapper">
+        <div class="no-content" *ngIf="isContent">
+            <h2>This video is no longer available</h2>
+            <button routerLink="/">Home</button>
+        </div>
+        <div class="post-loader" *ngIf="isLoading"></div>  
+    </div>
+    <div class="post-container" *ngIf="isPost">
+        <div class="post">
+            <app-post [post] = "post"></app-post>
+        </div>
+    </div>
+</div>
+

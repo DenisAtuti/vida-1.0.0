@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 63.5%;
+}
+:root{
+    /* --primary-color: #96011E; */
+    --primary-color: #FA9E1B;
+    --verified-color:#20D5EC;
+    --light-background-color:rgba(250, 158, 27, 0.5);
+    scroll-behavior:smooth;
+}
+body{
+    font-family: 'Merienda One', cursive;
+    overflow: hidden;
+}
+
+.post-loader{
+    width: 5rem;
+    height: 5rem;
+    border: 0.4rem solid var(--primary-color);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.3rem solid var(--primary-color);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+      
+/* responsive design */
+
+@media screen and (max-width: 1440px) {
+    html{
+        font-size: 60.5%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    html{
+        font-size: 53.5%;
+    }
+} 
+@media screen and (max-width: 425px) {
+    html{
+        font-size: 50.5%;
+    }
+} 

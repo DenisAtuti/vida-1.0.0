@@ -1,0 +1,43 @@
+<div class="container" *ngIf="isActive">
+    <div class="wrapper">
+        <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+            <p>login or sign up</p>
+            <div class="form-valid-message">
+                <p *ngIf="username.invalid && username.touched">You must enter username</p>
+                <p *ngIf="password.invalid && password.touched">You must enter password</p>
+            </div>
+            <div class="form-control"> 
+                <i class="fa-solid fa-user"></i>
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="username" 
+                    placeholder="username" 
+                    ngModel
+                    required 
+                    #username="ngModel"
+                >
+            </div>
+            <div class="form-control">
+                <i class="fa-solid fa-lock"></i>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="password" 
+                    ngModel  
+                    required 
+                    #password="ngModel">
+            </div>
+            <div class="form-control">
+                <input type="submit" role="button" [disabled]="!myForm.valid">
+                <!-- <i *ngIf="isLoading" class="fa-solid fa-circle-notch fa-spin"></i> -->
+                <div *ngIf="isLoading" class="loader"></div>
+            </div>
+        </form>
+       
+        <div class="close" (click)="onCloseBtnClicked()">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </div>
+    </div>
+</div>

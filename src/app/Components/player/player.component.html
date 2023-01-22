@@ -1,0 +1,46 @@
+<div #videoWrapper class="player-container">
+    <div  class="video-wrapper">
+        <video preload muted #video [src]="videoUrl" (click)="togglePlayPause()"></video>
+        <audio #audio rel="noreferrer" id="playAudio" ></audio>
+        <div class="buffer">
+            <div *ngIf="!isPlaying" class="post-loader"></div>
+        </div>
+    </div>
+    <div class="controls-container" [ngClass]="isNavigator ? 'active': 'shit'">
+        <div class="controls">
+            <div class="control time">
+                <p>{{currentTime}} / {{totalTime}}</p>
+            </div>
+            <div class="control play-pause">
+                <button *ngIf="!isPlaying" class="play" (click)="onPlayBtnClicked()">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button *ngIf="isPlaying" class="pause" (click)="onPauseBtnClicked()">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+            </div>
+            <div class="control medias">
+                <div class="media picture" (click)="onPictureModeBtnClicked()">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <div class="media download" (click)="onDownloadBtnClicked()">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <div class="media screen">
+                    <button *ngIf="!isFullScreen" class="expand" (click)="onfullscreenBtnClicked()">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+                    <button *ngIf="isFullScreen" class="compress" (click)="onfullscreenBtnClicked()">
+                        <i class="fa-solid fa-compress"></i>
+                    </button>
+                </div>                  
+            </div>            
+        </div>
+        <div #timelineContainer class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-thumb"></div>
+            </div>
+        </div>
+    </div>
+   
+</div>

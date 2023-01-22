@@ -1,0 +1,81 @@
+.notier-container{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right: 0;
+    height:10rem;
+    width:0;
+    background-color:#fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    transition: width 0.4s ease-in-out;
+}
+.notier-container.active{
+    border:solid 0.1rem rgb(232, 232, 232);
+    border-left: 1rem solid var(--notifier-color);
+    width: 20vw;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgb(232, 232, 232);
+    transition: width 0.4s ease-in-out;
+}
+.notier-container.active .notifier-content{
+    overflow: hidden;
+}
+.notier-container .notifier-content h3{
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+.notier-container .notifier-content p{
+    font-size:1.5rem;
+    color: rgb(89, 89, 89);
+    white-space: nowrap;   
+}
+
+.notier-container .notifier-icon{
+    color: var(--notifier-color);
+    font-size: 3rem;
+}
+
+.notier-container .notifier-close{
+    position:absolute;
+    top:0.5rem;
+    right:1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.notier-container .notifier-close:hover{
+    color:rgb(131, 131, 131);
+}
+
+/* @media screen and (min-width: 1024px) {
+    .notier-container.active{
+        width: 20vw;
+        box-shadow: none;
+    }
+} */
+@media screen and (max-width: 1024px) {
+    .notier-container.active{
+        width: 30vw;
+        box-shadow: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .notier-container.active{
+        width: 40vw;
+        box-shadow: none;
+    }
+}
+@media screen and (max-width: 425px) {
+    .notier-container.active{
+        width: 50vw;
+    }
+}
+@media screen and (max-width: 375px) {
+    .notier-container.active{
+        width: 80vw;
+    }
+}

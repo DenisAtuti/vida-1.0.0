@@ -1,0 +1,84 @@
+.container{
+    height:100%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(0, 0, 0, 0.8);
+    opacity:1;
+    pointer-events:auto;
+    transition: opacity 0.4s;
+}
+
+.container .wrapper{
+    background-color: #fff;
+    padding:5rem;
+    border-radius: 0.5rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .wrapper form p{
+    font-size: 2rem;
+    margin-bottom:1rem;
+}
+.container .wrapper form .form-valid-message p{
+    background-color: #FFEEEE;
+    color:#D0404B;
+    margin-bottom: 1rem;
+    font-size: 1.5rem ;
+    border-radius: 0.5rem;
+    padding:1rem;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    transition: all 3s ease-in-out;
+}
+
+.container .wrapper form .form-control{
+    margin-bottom: 2rem;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-color: var(--light-background-color);
+    border-radius: 0.5rem;
+}
+.container .wrapper form .form-control input{
+    font-family: inherit;
+    padding:1.5rem;
+    width: 100%;
+    outline: none;
+    border:none;
+    background-color: transparent;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    font-size: 2rem;
+}
+.container .wrapper form .form-control input.ng-invalid.ng-touched{
+    border: solid red 0.3rem;
+}
+.container .wrapper form .form-control input[type="submit"]{
+    background-color:var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+}
+.container .wrapper form .form-control input[type="submit"]:disabled{
+    cursor: not-allowed;
+    background-color:grey;
+}
+.container .wrapper form .form-control i{
+    font-size:2rem;
+    padding: 1rem;
+}
+.container .wrapper .close{
+    position: absolute;
+    top:-3rem;
+    right:-3rem;
+    font-size: 4rem;
+    color: var(--primary-color);
+    line-height: 0;
+    border-radius: 50%;
+    cursor: pointer
+}

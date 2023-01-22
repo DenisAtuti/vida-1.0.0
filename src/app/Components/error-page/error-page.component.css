@@ -1,0 +1,47 @@
+.error-container{
+    height: 100%;
+    width:100%;
+    background-image: url("https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-5529.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.error-container .error-content {
+    margin-bottom:5vh;
+    text-align:center
+}
+.error-container .error-content .error-btn{
+    display:inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size:3rem;
+    padding:0.5rem 1rem;
+    border-radius:1rem;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.error-container .error-content .error-btn:hover{
+    transform: scale(1.1);
+    box-shadow: 0.5rem 0.5rem #888888;
+    transition: all 0.4s;
+}
+.error-container .error-content p{
+    margin-top: 1rem;
+    font-size: 2rem;
+    color:rgb(95, 95, 95)
+}
+
+
+@media screen and (min-width: 1024px) {
+    .error-container .error-content {
+        margin-bottom:15vh;
+    }
+}
+@media screen and (max-width: 425px) {
+    .error-container .error-content {
+        margin-bottom:15vh;
+    }
+}

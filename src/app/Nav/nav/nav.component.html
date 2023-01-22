@@ -1,0 +1,47 @@
+<nav>
+    <div (click)="reload()" class="banner">
+       <img src="/assets/images/vida.png">
+    </div>
+    <div class="search">
+        <form action="">
+            <input type="search" name="search" id="search" placeholder="Search accounts" (input)="getSearchedName($event)">
+            <button [disabled]="isSearchForm" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+        <div class="search-result">
+            <ul *ngIf="modelNames">
+                <li *ngFor="let item of matches" (click)="navigateToAffiliate(item)">
+                    {{item}}
+                </li>
+                <li *ngIf="isSearchPresent">No account found</li>
+            </ul> 
+        </div>
+    </div>
+    <div *ngIf="isLoggedIn" class="profile">
+        <img src="https://robohash.org/keta" alt="keta">
+    </div>
+    <div class="mini-menu">
+        <i class="fa-solid fa-ellipsis-vertical" appOpenMiniMenu></i>
+        <div class="mini-menu-wrapper">
+
+            <a routerLink="/">
+                <div class="item for-you">For you</div>
+            </a>
+            <a (click)="navigateTo('following')">
+                <div class="item following">Following</div>
+            </a>
+            <a (click)="navigateTo('liked')">
+                <div class="item liked">Liked</div>
+            </a>
+            <div class="item logs">
+                <div *ngIf="isLoggedIn" class="logout" (click)="onLogOutBtnClicked()">
+                    Logout
+                </div>
+                <div *ngIf="!isLoggedIn" class="login" (click)="onLoginBtnClicked()">
+                    Login
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

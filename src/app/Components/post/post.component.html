@@ -1,0 +1,62 @@
+<div class="player"#player >
+    <div class="video-player">
+        <app-player 
+            [playVideoEvent]="playVideoEvent" 
+            [navigatorSubj]="navigatorSubj" 
+            [videoUrl]="post.videoLocationUrl"
+            [videoId]="videoId"
+            [affiliateName]="affiliateName"
+            [componentPage]="componentPage"
+        ></app-player>
+    </div>
+    <div *ngIf="isNavigator" class="navigator" (click)="toggleOpenNavigator()">      
+    </div>
+    <div *ngIf="isNavigator" class="link-container">
+        <div class="profile">
+            <img [src]="'https://robohash.org/' + post.affiliateName" [alt]="post.affiliateName">
+        </div>
+        <div  class="like" [ngClass]="{'active':post.isLiked}" title="Like video" (click)="onlikeCliked(post.isLiked)">
+            <i class="fa-regular fa-heart"></i>
+            <span>{{post.likesCount}}</span>
+        </div>
+        <div class="view" title="Video views">
+            <i class="fa-regular fa-circle-play"></i>
+            <span>{{post.viewsCount}}</span>
+        </div>
+        <div class="comment" (click)="openCommentModel(post.id)" title="View video comments">
+            <i class="fa-regular fa-message"></i>
+            <span>{{post.commentsCount}}</span>
+        </div>
+        <div class="share" (click)="shareBtnClicked(post.id)" title="share video">
+            <i class="fa-regular fa-share-from-square"></i>
+            <span>{{post.commentsCount}}</span>
+        </div>
+        
+        <div class="download" (click)="downloadBtnClicked(post.videoLocationUrl, post.affiliateName, post.id)" title="Download this video">
+            <i class="fa-regular fa-circle-down"></i>
+            <span>{{post.commentsCount}}</span>
+        </div>
+    </div>
+    <div *ngIf="isNavigator" class="header-container">
+        <div class="header">
+            <div [title]=" 'Browse ' + post.affiliateName + ' videos'" class="name" [routerLink]="['/affiliate/model/', post.affiliateName]">{{post.affiliateName}}</div>
+            <div *ngIf="post.isVerified" class="verified-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <button [title]="'Follow ' + post.affiliateName" class="follow" *ngIf="!post.isFollowing" (click)="onFollowBtnClicked(post.affiliateName)"><span *ngIf="!isLoading">Follow</span><span *ngIf="isLoading" class="loader"></span></button>
+            <button [title]="'Unfollow ' + post.affiliateName" class="following" *ngIf="post.isFollowing"  (click)="onUnfollowBtnClicked(post.affiliateName)"><span *ngIf="!isLoading">Following</span><span *ngIf="isLoading" class="loader"></span></button>
+        </div>
+        <div  [routerLink]="['/subreddit/account/', post.subreddit]" [title]="'Watch similar videos on ' + post.subreddit" class="subreddit"><i class="fa-solid fa-folder-open"></i>{{post.subreddit}}</div>
+        <div class="description">{{post.title}}</div>
+    </div>
+    <div class="ad-container" [class.active]="isActive" >
+        <div class="ad-wrappers">
+            <div class="image" (click)="openAd(post.ad.affiliateLink)">
+                <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
+            </div>
+            <div class="close" (click)="closeAd()">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+        </div>
+    </div>
+</div> 

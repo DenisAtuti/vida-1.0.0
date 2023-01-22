@@ -1,0 +1,113 @@
+.content-container{
+    height:100%;
+    width:100%;
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.content-container .content-menu{
+    margin-bottom: 1rem;
+}
+
+.content-container .content-menu a{
+    text-decoration: none;
+    color: #000;
+}
+.content-container .content-menu a.activeLink{
+    color:var(--primary-color);
+    transition: color 0.4s; 
+}
+
+.content-container .content-menu div{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.4s;
+}
+.content-container .content-menu div:hover{
+    color:var(--primary-color);
+    transition: color 0.4s;
+}
+.content-container .content-menu div i{
+    margin-right: 1rem;
+
+}
+.content-container .content-log{
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 1rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.content-container .content-log .login-wrapper.active{
+    display:none;
+}
+.content-container .content-log .logout-wrapper.active{
+    display:none;
+}
+
+.content-container .content-log p{
+    font-size: 1.5rem;
+    color:rgba(0, 0, 0, 0.6);
+}
+.content-container .content-log button{
+    outline: none;
+    font-family: inherit;
+    border: 0.1rem solid var(--primary-color);
+    padding: 1rem 3rem;
+    background-color:#fff;
+    color:var(--primary-color);
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 100%;
+    transition: all 0.4s;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+.content-container .content-log button:hover{
+    background-color:rgba(250, 158, 27,0.1);
+    transition: all 0.4s;
+}
+
+.content-container .content-account{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.content-container .content-account p{
+    font-size: 1.5rem;
+    color:rgba(0, 0, 0, 0.6);
+}
+
+.content-container .content-account .account{
+    display:flex;
+    align-items:center;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.content-container .content-account .account .image{
+    height: 4rem;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 0.1rem solid var(--primary-color);
+}
+.content-container .content-account .account .image img{
+    height: 100%;
+    width: auto;
+    object-fit: cover; 
+}
+.content-container .content-account .account p{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color:#000
+}
+.content-container .content-account .account i{
+    color:var(--verified-color);
+    font-size:1.5rem
+}
