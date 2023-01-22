@@ -25,7 +25,7 @@
     border: none;
 }
 .player-container video.portrait{
-    object-fit: cover;
+    /* object-fit: cover; */
     transition: all 1.5s;
 }
 .player-container .buffer{

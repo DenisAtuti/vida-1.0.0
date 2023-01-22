@@ -1,11 +1,14 @@
-<app-nav></app-nav>
-<div class="main-container">
-  <app-content></app-content>
-  <div class="main-post-container">
-    <router-outlet></router-outlet>
-    <app-comment></app-comment>
+<div class="content" #content>
+  <app-nav></app-nav>
+  <div class="main-container">
+    <app-content></app-content>
+    <div class="main-post-container">
+      <router-outlet></router-outlet>
+      <app-comment></app-comment>
+    </div>
   </div>
+  <app-log></app-log>
+  <app-landing-page *ngIf="isLanding"></app-landing-page>
+  <app-notifier></app-notifier>
 </div>
-<app-log></app-log>
-<app-landing-page *ngIf="isLanding"></app-landing-page>
-<app-notifier></app-notifier>
+
