@@ -22,6 +22,7 @@ import { PlayerComponent } from './Components/player/player.component';
 import { NotifierComponent } from './Components/notifier/notifier.component';
 import { MainService } from './Services/Data/main.service';
 import { SharedComponent } from './Components/shared/shared.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SharedComponent } from './Components/shared/shared.component';
     FormsModule
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
     // {
     //   provide: APP_INITIALIZER,
     //   useFactory: initMain,
