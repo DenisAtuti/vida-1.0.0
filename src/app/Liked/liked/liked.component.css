@@ -41,11 +41,11 @@
     cursor:pointer;
 }
 .container .post-container::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.3rem;
 }
   
 .container .post-container::-webkit-scrollbar-track {
-    background: #fff;
+    background: transparent;
 }
   
 .container .post-container::-webkit-scrollbar-thumb {
