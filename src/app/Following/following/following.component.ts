@@ -6,6 +6,8 @@ import { FollowingService } from 'src/app/Services/Data/following.service';
 import { NotifierService } from 'src/app/Services/notifier.service';
 import { SetScrolledHeightService } from 'src/app/Services/set-scrolled-height.service';
 import { AutoScrollService } from 'src/app/Services/auto-scroll.service';
+import { Title, Meta } from '@angular/platform-browser';
+import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-following',
@@ -19,7 +21,10 @@ export class FollowingComponent implements OnInit, AfterViewInit,  OnDestroy {
     private renderer: Renderer2,
     private notifier: NotifierService,
     private scroll: SetScrolledHeightService,
-    private autoScroll: AutoScrollService
+    private autoScroll: AutoScrollService,
+    private state: StateService,
+    private title: Title,
+    private meta: Meta
   ) { }
 
   posts: Post[] = []
@@ -42,6 +47,11 @@ export class FollowingComponent implements OnInit, AfterViewInit,  OnDestroy {
         if(posts.length === 0) this.isContent = true
       }
     )
+
+    this.title.setTitle(`vida| follow the best adult and porn content creators`)
+    this.meta.updateTag({name:"description", 
+          content:`vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
+          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`})
 
     this.followingService.canGetPostFun()
     this.followingService.isVideosLoaded()

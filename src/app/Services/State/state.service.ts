@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class StateService {
 
   constructor() { }
+
+  getYeah(){
+    return new Date().getFullYear()
+  }
 }

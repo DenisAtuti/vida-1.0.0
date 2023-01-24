@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AutoScrollService } from 'src/app/Services/auto-scroll.service';
 import { MainService } from 'src/app/Services/Data/main.service';
 import { NotifierService } from 'src/app/Services/notifier.service';
 import { SetScrolledHeightService } from 'src/app/Services/set-scrolled-height.service';
+import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +21,10 @@ export class MainComponent implements OnInit , OnDestroy, AfterViewInit {
     private scroll: SetScrolledHeightService,
     private element: ElementRef,
     private notifier: NotifierService,
-    private autoScroll: AutoScrollService
+    private autoScroll: AutoScrollService,
+    private state: StateService,
+    private title: Title,
+    private meta: Meta
   ) { }
   
 
@@ -42,6 +47,13 @@ export class MainComponent implements OnInit , OnDestroy, AfterViewInit {
           this.isLoading = false
           if(response.length === 0) this.isContent = true
           this.posts = response
+
+          console.log(this.state.getYeah())
+
+          this.title.setTitle("vida the new age pornhub")
+          this.meta.updateTag({name:"description", 
+          content:`vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
+          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`})
         }
     )
 

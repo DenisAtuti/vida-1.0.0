@@ -125,7 +125,7 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   shareBtnClicked(videoId){
     const myUrl = new URL(window.location.href)
-    navigator.clipboard.writeText(`${myUrl.host}/shared/post/${videoId}`);
+    navigator.clipboard.writeText(`${myUrl.host}/#/shared/post/${videoId}`);
     this.showNotifier("Success", "You have copied video link", "success")
   }
 
