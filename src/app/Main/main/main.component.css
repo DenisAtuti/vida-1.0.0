@@ -6,7 +6,7 @@
     height:100%;
     width: 100%;
     overflow: hidden;
-    overflow-y:scroll;
+    overflow-y:auto;
     scroll-snap-type: y mandatory;
     background: #F1F3F4;
 }
@@ -40,7 +40,7 @@
     cursor:pointer;
 }
 .container .post-container::-webkit-scrollbar {
-    width: 0.3rem;
+    width: 0.2rem;
 }
   
 .container .post-container::-webkit-scrollbar-track {

@@ -40,11 +40,11 @@
     cursor:pointer;
 }
 .container .post-container::-webkit-scrollbar {
-    width: 0.3rem;
+    width: 0.1rem;
 }
   
 .container .post-container::-webkit-scrollbar-track {
-    background: transparent;
+    background: black;
 }
   
 .container .post-container::-webkit-scrollbar-thumb {
