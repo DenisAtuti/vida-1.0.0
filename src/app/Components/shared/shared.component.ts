@@ -27,9 +27,16 @@ export class SharedComponent implements OnInit {
       (response) =>{
         console.log(response)
         if(response === null) this.isContent = true
+
+        response.viewsCount = this.generateStatistic(500000)
+        response.userLikes.length = this.generateStatistic(50000)
+        response.commentCount = this.generateStatistic(1000)
+        response.sharedCount = this.generateStatistic(1000)
+        
         this.isLoading = false
         this.isPost = true;
         // response.videoLocationUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+
         this.post = new Post(
           response.id, 
           response.videoId ,
@@ -59,6 +66,12 @@ export class SharedComponent implements OnInit {
 
   private createAudioUrl(url):string{
     return url.slice(0, 32) + 'DASH_audio.mp4' 
+  }
+
+  private generateStatistic(max = 500000){
+    let rand = Math.random() * max;
+    rand = Math.floor(rand); // 99
+    return rand;
   }
 
 }
