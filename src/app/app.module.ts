@@ -23,6 +23,7 @@ import { NotifierComponent } from './Components/notifier/notifier.component';
 import { MainService } from './Services/Data/main.service';
 import { SharedComponent } from './Components/shared/shared.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ShortNumberPipe } from './Pipe/short-number.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     PlayerComponent,
     NotifierComponent,
     SharedComponent,
+    ShortNumberPipe,
      
   ],
   imports: [

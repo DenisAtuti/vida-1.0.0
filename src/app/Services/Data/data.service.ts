@@ -348,7 +348,12 @@ export class DataService {
   }
 
   private createPostObj(item:any, isLast:boolean){
-    // item.videoLocationUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    item.videoLocationUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    item.viewsCount = this.generateStatistic(500000)
+    item.userLikes.length = this.generateStatistic(50000)
+    item.commentCount = this.generateStatistic(1000)
+    item.sharedCount = this.generateStatistic(1000)
+
     return new Post(
       item.id, 
       item.videoId ,
@@ -371,6 +376,12 @@ export class DataService {
 
   private createAudioUrl(url):string{
     return url.slice(0, 32) + 'DASH_audio.mp4' 
+  }
+
+  private generateStatistic(max = 500000){
+    let rand = Math.random() * max;
+    rand = Math.floor(rand); // 99
+    return rand;
   }
 
 

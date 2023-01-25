@@ -50,7 +50,7 @@ export class MainComponent implements OnInit , OnDestroy, AfterViewInit {
 
           console.log(this.state.getYeah())
 
-          this.title.setTitle("vida the new age pornhub")
+          this.title.setTitle("Vida the new age Pornhub")
           this.meta.updateTag({name:"description", 
           content:`vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
           sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`})

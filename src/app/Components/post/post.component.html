@@ -17,24 +17,24 @@
         </div>
         <div  class="like" [ngClass]="{'active':post.isLiked}" title="Like video" (click)="onlikeCliked(post.isLiked)">
             <i class="fa-regular fa-heart"></i>
-            <span>{{post.likesCount}}</span>
+            <span>{{post.likesCount | shortNumber}}</span>
         </div>
         <div class="view" title="Video views">
             <i class="fa-regular fa-circle-play"></i>
-            <span>{{post.viewsCount}}</span>
+            <span>{{post.viewsCount | shortNumber}}</span>
         </div>
         <div class="comment" (click)="openCommentModel(post.id)" title="View video comments">
             <i class="fa-regular fa-message"></i>
-            <span>{{post.commentsCount}}</span>
+            <span>{{post.commentsCount  | shortNumber}}</span>
         </div>
         <div class="share" (click)="shareBtnClicked(post.id)" title="share video">
             <i class="fa-regular fa-share-from-square"></i>
-            <span>{{post.commentsCount}}</span>
+            <span>{{post.sharedCount}}</span>
         </div>
         
         <div class="download" (click)="downloadBtnClicked(post.videoLocationUrl, post.affiliateName, post.id)" title="Download this video">
             <i class="fa-regular fa-circle-down"></i>
-            <span>{{post.commentsCount}}</span>
+            <span>{{post.sharedCount - 67  | shortNumber}}</span>
         </div>
     </div>
     <div *ngIf="isNavigator" class="header-container">
@@ -52,7 +52,7 @@
     <div class="ad-container" [class.active]="isActive" >
         <div class="ad-wrappers">
             <div class="image" (click)="openAd(post.ad.affiliateLink)">
-                <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
+                <!-- <img [src]="post.ad.clientImageUrl" alt="post.ad.company"> -->
             </div>
             <div class="close" (click)="closeAd()">
                 <i class="fa-regular fa-circle-xmark"></i>
