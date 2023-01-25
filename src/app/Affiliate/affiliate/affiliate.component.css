@@ -40,7 +40,7 @@
     cursor:pointer;
 }
 .container .post-container::-webkit-scrollbar {
-    width: 0.2rem;
+    width: 0.1rem;
 }
   
 .container .post-container::-webkit-scrollbar-track {
