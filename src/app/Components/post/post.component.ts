@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Outp
 import { Subject } from 'rxjs';
 import { Post } from 'src/app/Models/post-model';
 import { DataService } from 'src/app/Services/Data/data.service';
+import { FollowUnfollowService } from 'src/app/Services/follow-unfollow.service';
 import { IsLoggedService } from 'src/app/Services/is-logged.service';
 import { NotifierService } from 'src/app/Services/notifier.service';
 import { OpenCommentModelService } from 'src/app/Services/open-comment-model.service';
@@ -37,6 +38,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     private openCommentModelService: OpenCommentModelService,
     private notiferService: NotifierService,
     private logged: IsLoggedService,
+    private followUnfollowService: FollowUnfollowService,
     private http: HttpClient,
     private data: DataService
   ) { }
@@ -142,6 +144,7 @@ export class PostComponent implements OnInit, AfterViewInit {
         "warning"
       )
     }else{
+      this.followUnfollowService.setFollow(affiliateName)
       this.isLoading = true
       this.data.addfollower(affiliateName)
       setTimeout(()=>{
@@ -158,6 +161,7 @@ export class PostComponent implements OnInit, AfterViewInit {
         "warning"
       )
     }else{
+      this.followUnfollowService.setUnfollow(affiliateName)
       this.isLoading = true
       this.data.removefollower(affiliateName)
       setTimeout(()=>{

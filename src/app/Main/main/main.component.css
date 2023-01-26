@@ -40,7 +40,7 @@
     cursor:pointer;
 }
 .container .post-container::-webkit-scrollbar {
-    width: 0.15rem;
+    width: 0.5rem;
 }
   
 .container .post-container::-webkit-scrollbar-track {
@@ -59,3 +59,8 @@ background: rgba(250, 158, 27,0.5);
     width: 100%;
     scroll-snap-align: start;
 }
+@media screen and (max-width: 750px) {
+    .container .post-container::-webkit-scrollbar {
+        width: 0.15rem;
+    }
+} 

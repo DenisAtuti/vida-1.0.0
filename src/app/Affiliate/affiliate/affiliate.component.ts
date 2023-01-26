@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -13,12 +22,10 @@ import { StateService } from 'src/app/Services/State/state.service';
 @Component({
   selector: 'app-affiliate',
   templateUrl: './affiliate.component.html',
-  styleUrls: ['./affiliate.component.css']
+  styleUrls: ['./affiliate.component.css'],
 })
 export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
-
-
-  constructor( 
+  constructor(
     private route: ActivatedRoute,
     private afiliateService: AffiliateService,
     private scroll: SetScrolledHeightService,
@@ -30,116 +37,126 @@ export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
     private meta: Meta,
     private autoScroll: AutoScrollService
   ) {}
- 
 
-  posts: Post [] = []
-  affiliate: string
-  private subscription: Subscription
-  private paramSubscription: Subscription
-  autoScrollSub: Subscription
+  posts: Post[] = [];
+  affiliate: string;
+  private subscription: Subscription;
+  private paramSubscription: Subscription;
+  autoScrollSub: Subscription;
   isLastPage: boolean = false;
-  isLoading: boolean 
-  isContent: boolean
-  @Output() componentPage:string = "affiliate"
-  @ViewChild("container", {static: true}) container: ElementRef ;
+  isLoading: boolean;
+  isContent: boolean;
+  @Output() componentPage: string = 'affiliate';
+  @ViewChild('container', { static: true }) container: ElementRef;
 
   ngOnInit(): void {
-    this.isLoading = true
-    this.afiliateService.loadedVideos = 0
-    this.paramSubscription = this.route.params.subscribe(
-      (params: Params) =>{
-        this.affiliate = this.route.snapshot.paramMap.get('name'); 
-        this.afiliateService.determineAffiliateChange(this.affiliate)
-      }
-    )
-    
-    this.subscription = this.afiliateService.getPosts().subscribe(
-      (posts: Post[]) =>{
-        this.posts = posts
-        this.isLoading = false
-        if(posts.length === 0 ) this.isContent = true
-        posts.forEach(post =>{
-          if(post.isLast){
-           this.isLastPage = post.isLast;
+    this.isLoading = true;
+    this.afiliateService.loadedVideos = 0;
+    this.paramSubscription = this.route.params.subscribe((params: Params) => {
+      this.affiliate = this.route.snapshot.paramMap.get('name');
+      this.afiliateService.determineAffiliateChange(this.affiliate);
+    });
+
+    this.subscription = this.afiliateService
+      .getPosts()
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+        this.isLoading = false;
+        if (posts.length === 0) this.isContent = true;
+        posts.forEach((post) => {
+          if (post.isLast) {
+            this.isLastPage = post.isLast;
           }
-        })
-      }
-    )
-    this.title.setTitle(`vida| ${this.affiliate} is one of the best adult and porn content creators`)
-    this.meta.updateTag({name:"description", 
-          content:`vida the world's best porn sites of ${this.state.getYeah()}. Watch free ${this.affiliate} porn videos, 
-          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`})
+        });
+      });
+    this.title.setTitle(
+      `vida| ${this.affiliate} is one of the best adult and porn content creators`
+    );
+    this.meta.updateTag({
+      name: 'description',
+      content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free ${
+        this.affiliate
+      } porn videos, 
+          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
+    });
 
-    this.afiliateService.canGetPostFun()
+    this.afiliateService.canGetPostFun();
+    this.afiliateService.unfollowLoadedAffilliate();
+    this.afiliateService.followLoadedAffilliate();
   }
 
-  ngAfterViewInit(){
-    this.scrollFun()
-    this.autoScrollFun(this.container.nativeElement)
-    this.renderer.listen(this.container.nativeElement, 'scroll' , (e) =>{
-      this.determineLastPage(e)
-      setTimeout(() => {  
-        this.scroll.setScrolledHeight(this.container.nativeElement, "affiliate_scrolled_height")
+  ngAfterViewInit() {
+    this.scrollFun();
+    this.autoScrollFun(this.container.nativeElement);
+    this.renderer.listen(this.container.nativeElement, 'scroll', (e) => {
+      this.determineLastPage(e);
+      setTimeout(() => {
+        this.scroll.setScrolledHeight(
+          this.container.nativeElement,
+          'affiliate_scrolled_height'
+        );
       }, 1000);
-    })
+    });
   }
 
-  private autoScrollFun(container: any){
-    this.autoScrollSub = this.autoScroll.autoScroll().subscribe(
-      (componentPage: string) =>{
-        if(componentPage === "affiliate"){
+  private autoScrollFun(container: any) {
+    this.autoScrollSub = this.autoScroll
+      .autoScroll()
+      .subscribe((componentPage: string) => {
+        if (componentPage === 'affiliate') {
           container.scrollBy({
-            top:100,
-            behavior:'smooth'
-          })
+            top: 100,
+            behavior: 'smooth',
+          });
         }
-      }
-    )
+      });
   }
 
-  determineLastPage(event){
+  determineLastPage(event) {
     const container = event.target;
-    if( container.scrollTop >= (container.scrollHeight - container.offsetHeight)){
+    if (
+      container.scrollTop >=
+      container.scrollHeight - container.offsetHeight
+    ) {
       if (!this.isLastPage) {
         this.notifier.showNotification({
-          header: "Warning",
-          message:"Videos are still loading",
-          mode:"warning"
-        })
-      } 
+          header: 'Warning',
+          message: 'Videos are still loading',
+          mode: 'warning',
+        });
+      }
 
       if (this.isLastPage) {
         this.notifier.showNotification({
-          header: "Warning",
-          message:"This is the last post",
-          mode:"warning"
-        })
+          header: 'Warning',
+          message: 'This is the last post',
+          mode: 'warning',
+        });
       }
+    }
   }
 
-  }
-
-  scrollFun(){ 
-    const observable = new Observable(subscribe =>{
-      setInterval(()=>{
-        subscribe.next(this.posts.length)
-      },100)
-    })
-    .subscribe(response =>{
-      if(response >= 1){
-        console.log("post length is " + response)
-        this.scroll.getScrolledHeight(this.container.nativeElement, "affiliate_scrolled_height") 
-        observable.unsubscribe()
+  scrollFun() {
+    const observable = new Observable((subscribe) => {
+      setInterval(() => {
+        subscribe.next(this.posts.length);
+      }, 100);
+    }).subscribe((response) => {
+      if (response >= 1) {
+        console.log('post length is ' + response);
+        this.scroll.getScrolledHeight(
+          this.container.nativeElement,
+          'affiliate_scrolled_height'
+        );
+        observable.unsubscribe();
       }
-    })
+    });
   }
-
 
   ngOnDestroy(): void {
-    this.afiliateService.unsubscribeCanGetPostFun()
-    this.subscription.unsubscribe()
-    this.paramSubscription.unsubscribe()
-    this.autoScrollSub.unsubscribe()
+    this.afiliateService.unsubscribeCanGetPostFun();
+    this.subscription.unsubscribe();
+    this.paramSubscription.unsubscribe();
+    this.autoScrollSub.unsubscribe();
   }
-
 }

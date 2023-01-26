@@ -35,7 +35,6 @@ export class ContentComponent implements OnInit {
     )
     this.data.getVerfiedAffiliates().subscribe(
       (response) => {
-        console.log(response.content)
         this.accounts = response.content
       }
     )

@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -11,11 +20,10 @@ import { StateService } from 'src/app/Services/State/state.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
-export class MainComponent implements OnInit , OnDestroy, AfterViewInit {
-
-  constructor( 
+export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
+  constructor(
     private mainService: MainService,
     private renderer: Renderer2,
     private scroll: SetScrolledHeightService,
@@ -25,114 +33,117 @@ export class MainComponent implements OnInit , OnDestroy, AfterViewInit {
     private state: StateService,
     private title: Title,
     private meta: Meta
-  ) { }
-  
+  ) {}
 
-  posts: any []
+  posts: any[];
   subscription: Subscription;
-  autoScrollSub: Subscription
+  autoScrollSub: Subscription;
   isLastPage: boolean = false;
-  isLoading :boolean = false
-  isContent: boolean  = false
-  @Output() componentPage:string = "main"
-  @ViewChild("container", {static: true}) container: ElementRef ;
-  
+  isLoading: boolean = false;
+  isContent: boolean = false;
+  @Output() componentPage: string = 'main';
+  @ViewChild('container', { static: true }) container: ElementRef;
+
   ngOnInit(): void {
-    this.isLoading = true
+    this.isLoading = true;
     this.mainService.loadedVideos = 0; //this is to ensure on init submissino of complete always inicciated
     this.mainService.getPostsFromServer();
-    this.subscription = this.mainService.getPost().subscribe(
-        (response: any[]) =>{
-          console.log(response)
-          this.isLoading = false
-          if(response.length === 0) this.isContent = true
-          this.posts = response
+    this.subscription = this.mainService
+      .getPost()
+      .subscribe((response: any[]) => {
+        this.isLoading = false;
+        if (response.length === 0) this.isContent = true;
+        this.posts = response;
 
-          console.log(this.state.getYeah())
 
-          this.title.setTitle("Vida the new age Pornhub")
-          this.meta.updateTag({name:"description", 
-          content:`vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
-          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`})
-        }
-    )
+        this.title.setTitle('Vida the new age Pornhub');
+        this.meta.updateTag({
+          name: 'description',
+          content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
+          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
+        });
+      });
 
-    this.mainService.canGetPostFun()
-    this.mainService.videosLoaded()
+    this.mainService.canGetPostFun();
+    this.mainService.videosLoaded();
+    this.mainService.unfollowLoadedAffilliate();
+    this.mainService.followLoadedAffilliate();
   }
 
-  ngAfterViewInit(){
-    this.scrollFun()
-    this.autoScrollFun(this.container.nativeElement)
+  ngAfterViewInit() {
+    this.scrollFun();
+    this.autoScrollFun(this.container.nativeElement);
     // this.scroll.getScrolledHeight(this.container.nativeElement, "main_scrolled_height")
-    this.renderer.listen(this.container.nativeElement, 'scroll' , (e) =>{
-      this.determineLastPage(e)
-      setTimeout(() => {  
-        this.scroll.setScrolledHeight(this.container.nativeElement, "main_scrolled_height")
+    this.renderer.listen(this.container.nativeElement, 'scroll', (e) => {
+      this.determineLastPage(e);
+      setTimeout(() => {
+        this.scroll.setScrolledHeight(
+          this.container.nativeElement,
+          'main_scrolled_height'
+        );
       }, 1000);
-    })
+    });
   }
 
-  scrollFun(){ 
-    const observable = new Observable(subscribe =>{
-      setInterval(()=>{
-        subscribe.next(this.posts.length)
-      },100)
-    })
-    .subscribe(response =>{
-      if(response >= 1){
-        this.scroll.getScrolledHeight(this.container.nativeElement, "main_scrolled_height") 
-        observable.unsubscribe()
+  scrollFun() {
+    const observable = new Observable((subscribe) => {
+      setInterval(() => {
+        subscribe.next(this.posts.length);
+      }, 100);
+    }).subscribe((response) => {
+      if (response >= 1) {
+        this.scroll.getScrolledHeight(
+          this.container.nativeElement,
+          'main_scrolled_height'
+        );
+        observable.unsubscribe();
       }
-    })
+    });
   }
 
-  private autoScrollFun(container: any){
-    this.autoScrollSub = this.autoScroll.autoScroll().subscribe(
-      (componentPage: string) =>{
-        if(componentPage === "main"){
+  private autoScrollFun(container: any) {
+    this.autoScrollSub = this.autoScroll
+      .autoScroll()
+      .subscribe((componentPage: string) => {
+        if (componentPage === 'main') {
           container.scrollBy({
-              top:1,
-              behavior:'smooth'
-          })   
+            top: 1,
+            behavior: 'smooth',
+          });
         }
-      }
-    )
+      });
   }
 
-  determineLastPage(event){
+  determineLastPage(event) {
     const container = event.target;
-    if( container.scrollTop >= (container.scrollHeight - container.offsetHeight)){
+    if (
+      container.scrollTop >=
+      container.scrollHeight - container.offsetHeight
+    ) {
       if (!this.isLastPage) {
         this.notifier.showNotification({
-          header: "Warning",
-          message:"Videos are still loading",
-          mode:"warning"
-        })
-      } 
+          header: 'Warning',
+          message: 'Videos are still loading',
+          mode: 'warning',
+        });
+      }
 
       if (this.isLastPage) {
         this.notifier.showNotification({
-          header: "Warning",
-          message:"Last page",
-          mode:"warning"
-        })
+          header: 'Warning',
+          message: 'Last page',
+          mode: 'warning',
+        });
       }
+    }
   }
-
-  }
-
-
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
-    this.autoScrollSub.unsubscribe()
-    this.mainService.loadedVideos = 0
-    this.mainService.unsubscribeCanGetPostFun()
-    this.mainService. unsbuscribeVideoLoaded()
-
+    this.subscription.unsubscribe();
+    this.autoScrollSub.unsubscribe();
+    this.mainService.loadedVideos = 0;
+    this.mainService.unsubscribeCanGetPostFun();
+    this.mainService.unsbuscribeVideoLoaded();
+    this.mainService.unsubscribeFolloUnfollow();
   }
-
- 
-
 }
