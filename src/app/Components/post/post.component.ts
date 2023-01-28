@@ -57,6 +57,8 @@ export class PostComponent implements OnInit, AfterViewInit {
     // this.videoUrl = this.post.videoLocationUrl
     if(this.post.sharedCount - 67 <= 0 ){
       this.downloads = 19 
+    }else{
+      this.downloads = this.post.sharedCount - 67
     }
     
   }
