@@ -90,6 +90,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   navigateToAffiliate(item: string) {
+    this.matches.length = 0;
     this.router.navigate(['/affiliate/model/', item]);
   }
 

@@ -127,8 +127,21 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   shareBtnClicked(videoId){
     const myUrl = new URL(window.location.href)
-    navigator.clipboard.writeText(`${myUrl.host}/#/shared/post/${videoId}`);
-    this.showNotifier("Success", "You have copied video link", "success")
+    const link = `${myUrl.host}/#/shared/post/${videoId}`
+   
+    if(navigator.share){
+      navigator.share({
+        text: 'WATCH 18+ free tiktoks',
+        url: link
+      }).then(()=>{
+        console.log('shareing')
+      }).catch((err) =>{
+        console.log(err)
+      })
+    }else{
+      navigator.clipboard.writeText(link);
+      this.showNotifier("Success", "You have copied video link", "success")
+    }
   }
 
   downloadBtnClicked(url: string, model:string, videoId:number){
