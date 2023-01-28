@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Post } from 'src/app/Models/post-model';
 import { DataService } from 'src/app/Services/Data/data.service';
 import { FollowUnfollowService } from 'src/app/Services/follow-unfollow.service';
 import { IsLoggedService } from 'src/app/Services/is-logged.service';
@@ -20,6 +19,7 @@ export class PostComponent implements OnInit, AfterViewInit {
   isNavigator: boolean = true;
   isLogged: boolean
   isLoading: boolean
+  downloads: number
 
   observer:any
 
@@ -55,6 +55,9 @@ export class PostComponent implements OnInit, AfterViewInit {
     this.affiliateName = this.post.affiliateName; 
     // console.log(this.post)
     // this.videoUrl = this.post.videoLocationUrl
+    if(this.post.sharedCount - 67 <= 0 ){
+      this.downloads = 19 
+    }
     
   }
   

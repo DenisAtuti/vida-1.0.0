@@ -34,7 +34,7 @@
         
         <div class="download" (click)="downloadBtnClicked(post.videoLocationUrl, post.affiliateName, post.id)" title="Download this video">
             <i class="fa-regular fa-circle-down"></i>
-            <span>{{post.sharedCount - 67  | shortNumber}}</span>
+            <span>{{downloads | shortNumber}}</span>
         </div>
     </div>
     <div *ngIf="isNavigator" class="header-container">
