@@ -215,18 +215,15 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.videoWrapper.requestFullscreen()
     this.isFullScreen = true;
     this.renderer.removeClass(this.video, 'portrait')
-    // if (document.fullscreenElement == null) {
-    //   this.videoWrapper.requestFullscreen()
-    //   this.isFullScreen = true;
-    //   this.renderer.removeClass(this.video, 'portrait')
-    // }else{
-    //   document.exitFullscreen()
-    //   this.isFullScreen = false;
-    // }
+
   }
   onNotfullscreenBtnClicked(){
     document.exitFullscreen()
     this.isFullScreen = false;
+    const width = window.innerWidth
+    if(this.video.videoHeight > this.video.videoWidth && width <= 425){
+      this.renderer.addClass(this.video, 'portrait')
+    } 
   }
 
   private scrollFun(){
