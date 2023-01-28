@@ -1,7 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/Models/post-model';
 import { DataService } from 'src/app/Services/Data/data.service';
+import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-shared',
@@ -12,7 +14,10 @@ export class SharedComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private data: DataService
+    private data: DataService,
+    private title: Title,
+    private state: StateService,
+    private meta: Meta
   ) { }
 
   post: Post 
@@ -55,6 +60,18 @@ export class SharedComponent implements OnInit {
           true,
           response.ad
         ) 
+
+        this.title.setTitle(
+          `vida| ${response.affiliateName} is one of the best adult and porn content creators`
+        );
+        this.meta.updateTag({
+          name: 'description',
+          content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free ${
+            response.affiliateName
+          } porn videos, 
+              sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
+        });
+
       },
       (error) =>{
         this.isPost = false;
@@ -62,6 +79,8 @@ export class SharedComponent implements OnInit {
         this.isContent = true
       }
     )
+
+    
   }
 
   private createAudioUrl(url):string{
