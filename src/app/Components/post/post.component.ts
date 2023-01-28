@@ -132,7 +132,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     if(navigator.share){
       navigator.share({
         text: 'WATCH 18+ free tiktoks',
-        url: link
+        url: `/#/shared/post/${videoId}`
       }).then(()=>{
         console.log('shareing')
       }).catch((err) =>{
