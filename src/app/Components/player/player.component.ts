@@ -101,7 +101,8 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.renderer.listen(this.video, 'loadeddata' ,()=>{
       this.totalTime = this.formatTime(this.video.duration);
-      if(this.video.videoHeight > this.video.videoWidth){
+      const width = window.innerWidth
+      if(this.video.videoHeight > this.video.videoWidth && width <= 425){
         this.renderer.addClass(this.video, 'portrait')
       } 
     })
@@ -214,6 +215,7 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
     if (document.fullscreenElement == null) {
       this.videoWrapper.requestFullscreen()
       this.isFullScreen = true;
+      this.renderer.removeClass(this.video, 'portrait')
     }else{
       document.exitFullscreen()
       this.isFullScreen = false;

@@ -25,7 +25,7 @@
     border: none;
 }
 .player-container video.portrait{
-    /* object-fit: cover; */
+    object-fit: cover;
     transition: all 1.5s;
 }
 .player-container .buffer{
@@ -198,5 +198,6 @@
     .player-container .controls-container .controls .medias{
         gap:1.5rem;
     }
+  
 } 
 

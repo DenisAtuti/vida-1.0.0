@@ -128,8 +128,9 @@ export class PostComponent implements OnInit, AfterViewInit {
   shareBtnClicked(videoId){
     const myUrl = new URL(window.location.href)
     const link = `${myUrl.host}/#/shared/post/${videoId}`
+    const width = window.innerWidth
    
-    if(navigator.share){
+    if(navigator.share && width <= 768){
       navigator.share({
         text: 'WATCH 18+ free tiktoks',
         url: `/#/shared/post/${videoId}`
