@@ -255,7 +255,7 @@ export class DataService {
       (response: any) =>{
         return  response
       },
-      // catchError(error => this.catchedError(error))
+      catchError(error => this.catchedError(error))
     )
   }
 
@@ -347,6 +347,14 @@ export class DataService {
     })
   }
 
+  private failureNotifier(){
+    this.notifier.showNotification({
+      header: "Server Error",
+      message: " We can't process you request at the moment",
+      mode: "error"
+    })
+  }
+
   private createPostObj(item:any, isLast:boolean){
     // item.videoLocationUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
     item.viewsCount = this.generateStatistic(500000)
@@ -386,11 +394,7 @@ export class DataService {
 
 
   private catchedError(error): Observable<Response>{
-    this.notifier.showNotification({
-      header: error.error.reason,
-      message: error.error.message,
-      mode: "error"
-    })
+    this.failureNotifier()
     return throwError(error)
   }
 
