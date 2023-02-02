@@ -181,7 +181,7 @@
     transition: height 0.4s;
 }
 .player .ad-container .ad-wrappers{
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
     position:relative;
