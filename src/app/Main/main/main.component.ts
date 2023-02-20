@@ -56,10 +56,10 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         this.posts = response;
 
 
-        this.title.setTitle('Vida the new age Pornhub');
+        this.title.setTitle('Vida videos the new age Porn viewing and watchig');
         this.meta.updateTag({
           name: 'description',
-          content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
+          content: `vida videos the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
           sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
         });
       });

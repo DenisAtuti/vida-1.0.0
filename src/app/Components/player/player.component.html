@@ -1,6 +1,6 @@
 <div #videoWrapper class="player-container">
     <div  class="video-wrapper">
-        <video preload muted #video [src]="videoUrl" (click)="togglePlayPause()"></video>
+        <video preload muted #video [src]="videoUrl" (click)="togglePlayPause()" type="video/mp4"></video>
         <audio #audio rel="noreferrer" id="playAudio" ></audio>
         <div class="buffer">
             <div *ngIf="!isPlaying" class="post-loader"></div>
@@ -23,7 +23,7 @@
                 <div class="media picture" (click)="onPictureModeBtnClicked()">
                     <i class="fa-solid fa-image"></i>
                 </div>
-                <div class="media download" (click)="onDownloadBtnClicked()">
+                <div class="media download" [ngClass]="{'downloading' : isDownloading}" (click)="onDownloadBtnClicked()">
                     <i class="fa-solid fa-download"></i>
                 </div>
                 <div class="media screen">

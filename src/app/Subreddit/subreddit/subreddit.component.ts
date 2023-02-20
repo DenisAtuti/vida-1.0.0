@@ -64,11 +64,11 @@ export class SubredditComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       });
     this.title.setTitle(
-      `vida| ${subreddit} is one of the best adult and porn categories`
+      `vida videos| ${subreddit} is one of the best adult and porn categories`
     );
     this.meta.updateTag({
       name: 'description',
-      content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free ${subreddit} porn videos, 
+      content: `vida videos the world's best porn sites of ${this.state.getYeah()}. Watch free ${subreddit} porn videos, 
           sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
     });
 

@@ -74,6 +74,11 @@
     transition: all 0.4s ease;
 }
 
+.player .link-container .downloading{
+    color: var(--primary-color)
+}
+
+
 /* HEADER SECTION */
 .player .header-container{
     position:absolute;
@@ -99,6 +104,12 @@
 .player .header-container .header .name:hover{
     color: var(--primary-color);
     transition: 0.4s;
+}
+.player .header-container .header .name h2{
+    font-size: 3rem;
+}
+.player .header-container .header .name h3{
+    font-size: 1.5rem;
 }
 .player .header-container .header .verified-icon i{
     font-size:1rem;
@@ -189,10 +200,10 @@
 .player .ad-container .ad-wrappers .image{
     height:20rem;
     overflow: hidden;
+    cursor:pointer;
 }
 .player .ad-container .ad-wrappers .image img{
     height: 100%;
-    background-color: red;
 }
 .player .ad-container .ad-wrappers .close{
     position:absolute;

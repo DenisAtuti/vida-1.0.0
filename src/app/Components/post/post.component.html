@@ -32,26 +32,32 @@
             <span>{{post.sharedCount}}</span>
         </div>
         
-        <div class="download" (click)="downloadBtnClicked(post.videoLocationUrl, post.affiliateName, post.id)" title="Download this video">
+        <div class="download" [ngClass]="{'downloading' : isDownloading}" (click)="downloadBtnClicked(post.videoLocationUrl, post.affiliateName, post.id)" title="Download this video">
             <i class="fa-regular fa-circle-down"></i>
             <span>{{downloads | shortNumber}}</span>
         </div>
     </div>
     <div *ngIf="isNavigator" class="header-container">
         <div class="header">
-            <div [title]=" 'Browse ' + post.affiliateName + ' videos'" class="name" [routerLink]="['/affiliate/model/', post.affiliateName]">{{post.affiliateName}}</div>
+            <div [title]=" 'Browse ' + post.affiliateName + ' videos'" class="name" [routerLink]="['/affiliate/model/', post.affiliateName]">
+                <h2>{{post.affiliateName}}</h2>
+            </div>
             <div *ngIf="post.isVerified" class="verified-icon">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
             <button [title]="'Follow ' + post.affiliateName" class="follow" *ngIf="!post.isFollowing" (click)="onFollowBtnClicked(post.affiliateName)"><span *ngIf="!isLoading">Follow</span><span *ngIf="isLoading" class="loader"></span></button>
             <button [title]="'Unfollow ' + post.affiliateName" class="following" *ngIf="post.isFollowing"  (click)="onUnfollowBtnClicked(post.affiliateName)"><span *ngIf="!isLoading">Following</span><span *ngIf="isLoading" class="loader"></span></button>
         </div>
-        <div  [routerLink]="['/subreddit/account/', post.subreddit]" [title]="'Watch similar videos on ' + post.subreddit" class="subreddit"><i class="fa-solid fa-folder-open"></i>{{post.subreddit}}</div>
-        <div class="description">{{post.title}}</div>
+        <div  [routerLink]="['/subreddit/account/', post.subreddit]" [title]="'Watch similar videos on ' + post.subreddit" class="subreddit">
+            <h3><i class="fa-solid fa-folder-open"></i>{{post.subreddit}}</h3>
+        </div>
+        <div class="description">
+            <p>{{post.title}}</p>
+        </div>
     </div>
     <div class="ad-container" [class.active]="isActive" >
         <div class="ad-wrappers">
-            <div class="image" (click)="openAd(post.ad.affiliateLink)">
+            <div class="image" (click)="openAd(post.ad.affiliateLink, post.ad.id)">
                 <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
             </div>
             <div class="close" (click)="closeAd()">

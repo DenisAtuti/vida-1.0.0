@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
+import { finalize, Subject } from 'rxjs';
 import { DataService } from 'src/app/Services/Data/data.service';
 import { FollowUnfollowService } from 'src/app/Services/follow-unfollow.service';
 import { IsLoggedService } from 'src/app/Services/is-logged.service';
@@ -19,6 +19,7 @@ export class PostComponent implements OnInit, AfterViewInit {
   isNavigator: boolean = true;
   isLogged: boolean
   isLoading: boolean
+  isDownloading: boolean = false;
   downloads: number
 
   observer:any
@@ -150,9 +151,19 @@ export class PostComponent implements OnInit, AfterViewInit {
     }
   }
 
-  downloadBtnClicked(url: string, model:string, videoId:number){
+  downloadBtnClicked(url: string, model:string, videoId:number){  
     const filename = model + "_" + videoId
-    this.download(url, filename)
+    if(this.isDownloading){
+      this.showNotifier(
+        "Warning", 
+        `Wait, still downloading previous video`, 
+        "warning"
+      )
+    }else{
+      this.isDownloading = true
+      this.download(url, filename)
+    }
+   
   }
 
   onFollowBtnClicked(affiliateName: string){
@@ -190,7 +201,9 @@ export class PostComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openAd(link: string){
+  openAd(link: string, ad_id: number){
+    console.log(ad_id)
+    this.data.updatingAdsClicks(ad_id)
     window.open(link, '_blank');
   }
 
@@ -215,6 +228,13 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   private download(url:string, filename:string){
     this.http.get(url,{responseType: 'blob'})
+      .pipe(
+        finalize(() =>{
+          setTimeout(()=>{
+            this.isDownloading = false
+          },1000)
+        })
+      )
       .subscribe(
         (blob) =>{
         const link = document.createElement('a')

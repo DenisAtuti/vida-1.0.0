@@ -57,11 +57,11 @@ export class FollowingComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.title.setTitle(
-      `vida| follow the best adult and porn content creators`
+      `vida videos| follow the best adult and porn content creators`
     );
     this.meta.updateTag({
       name: 'description',
-      content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
+      content: `vida videos the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
           sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
     });
 

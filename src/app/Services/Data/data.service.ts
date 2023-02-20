@@ -315,6 +315,17 @@ export class DataService {
 
   }
 
+  // UPDATING AD CLICKS
+  updatingAdsClicks(ad_id: number){
+    this.http.get(`${this.baseUrl}/api/v1/ad/add/click/${ad_id}`)
+    .pipe(
+      map(response => {
+        return response;
+      }),
+    )
+    .subscribe()
+  }
+
   verfyToken(token: string):Observable<boolean>{
     const httpOpts = {
       headers: new HttpHeaders({
@@ -394,6 +405,7 @@ export class DataService {
 
 
   private catchedError(error): Observable<Response>{
+    console.log(error)
     this.failureNotifier()
     return throwError(error)
   }

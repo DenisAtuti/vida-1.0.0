@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { AutoScrollService } from 'src/app/Services/auto-scroll.service';
 import { CanGetPostService } from 'src/app/Services/can-get-post.service';
 import { CompletedService } from 'src/app/Services/completed.service';
+import { NotifierService } from 'src/app/Services/notifier.service';
 
 @Component({
   selector: 'app-player',
@@ -43,6 +44,7 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
   isPictureMode = false;
   isComplete: boolean = false;
   isScrubbing:boolean;
+  isDownloading: boolean = false;
 
   totalTime:any;
   currentTime:any;
@@ -52,7 +54,8 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
     private http: HttpClient,
     private completedService: CompletedService,
     private canGetPost: CanGetPostService,
-    private autoScroll: AutoScrollService
+    private autoScroll: AutoScrollService,
+    private notiferService: NotifierService,
   ) { }
   
   ngOnInit(): void {
@@ -64,7 +67,7 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
         }, 1000);
       }
     )
-    this.playVideo()    
+    this.playVideo() 
   }
 
   ngAfterViewInit(){
@@ -88,7 +91,6 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
     this.renderer.listen(this.video, 'ended' ,()=>{
-      console.log("completed")
       this.video.currentTime = 0
       this.scrollFun()
     })
@@ -151,7 +153,6 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
   videoLoaded(event: any){
     if(event.target.readyState >= 3 && this.isComplete === false){
       this.completedService.isVideoLoaded(this.componentPage)
-      // console.log(this.componentPage + "completed")
       this.isComplete = true;
     }                                                                                                                                            
   } 
@@ -208,7 +209,16 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onDownloadBtnClicked(){
-    this.download(this.videoUrl, this.fileName)
+    if(this.isDownloading){
+      this.showNotifier(
+        "Warning", 
+        `Wait, still downloading previous video`, 
+        "warning"
+      )
+    }else{
+      this.isDownloading = true;
+      this.download(this.videoUrl, this.fileName)
+    }
   }
 
   onfullscreenBtnClicked(){
@@ -254,6 +264,13 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private download(url:string, filename:string){
     this.http.get(url,{responseType: 'blob'})
+      .pipe(
+        finalize(() =>{
+          setTimeout(()=>{
+            this.isDownloading = false
+          },1000)
+        })
+      )
       .subscribe(
         (blob) =>{
         const link = document.createElement('a')
@@ -262,7 +279,7 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
         link.download = filename + ".mp4"
         link.click()
         URL.revokeObjectURL(objUrl)
-        
+        this.showNotifier("Success", "Video download has started", "success")
       })
   }
 
@@ -313,6 +330,14 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.handleMouseMove(event)
     
+  }
+
+  private showNotifier(header: string, message:string, mode:string){
+    this.notiferService.showNotification({
+        header: header,
+        message: message,
+        mode: mode
+      })
   }
 
 

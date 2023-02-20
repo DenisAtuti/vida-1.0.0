@@ -118,6 +118,11 @@
     color: var(--primary-color);
     transition: color 0.4s
 }
+
+.player-container .controls-container .controls .medias .media.downloading{
+    color: var(--primary-color)
+}
+
 .player-container .controls-container .controls .medias button{
     cursor: pointer;
     outline: none;
