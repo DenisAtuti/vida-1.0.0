@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map , catchError , Observable, throwError } from 'rxjs';
 import { Post } from 'src/app/Models/post-model';
 import { NotifierService } from '../notifier.service';
@@ -14,6 +15,7 @@ export class DataService {
   constructor(
     private http: HttpClient, 
     private notifier: NotifierService,
+    private route: Router
   ) { }
 
   
@@ -364,6 +366,7 @@ export class DataService {
       message: " We can't process you request at the moment",
       mode: "error"
     })
+    this.route.navigate(["/"])
   }
 
   private createPostObj(item:any, isLast:boolean){

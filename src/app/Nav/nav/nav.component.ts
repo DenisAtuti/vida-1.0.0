@@ -38,7 +38,9 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   reload(){
-    this.mainService.reload()
+    this.router.navigate(["/"]).then(result=>{window.location.href = 'https://www.vida-videos.com/';});
+
+    // this.mainService.reload()
   }
 
   onLoginBtnClicked(): void {
