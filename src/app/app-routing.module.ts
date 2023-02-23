@@ -10,7 +10,10 @@ import { SubredditComponent } from './Subreddit/subreddit/subreddit.component';
 
 const routes: Routes = [
   {path:'', component:MainComponent},
-  {path:'affiliate/model/:name', component:AffiliateComponent},
+  {
+    path:'affiliate/model/:name', 
+    component: AffiliateComponent
+  },
   {path:'subreddit/account/:name', component:SubredditComponent},
   {path:'following', component:FollowingComponent},
   {path:'liked', component:LikedComponent},

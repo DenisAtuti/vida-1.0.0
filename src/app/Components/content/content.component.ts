@@ -53,6 +53,7 @@ export class ContentComponent implements OnInit {
       this.router.navigate([`/${link}`])
     }else{
       this.displayNotifier()
+      this.logActiveService.setActive()
     }
   }
 

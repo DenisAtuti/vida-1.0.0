@@ -4,6 +4,7 @@ import { finalize, Subject } from 'rxjs';
 import { DataService } from 'src/app/Services/Data/data.service';
 import { FollowUnfollowService } from 'src/app/Services/follow-unfollow.service';
 import { IsLoggedService } from 'src/app/Services/is-logged.service';
+import { LogActiveService } from 'src/app/Services/log-active.service';
 import { NotifierService } from 'src/app/Services/notifier.service';
 import { OpenCommentModelService } from 'src/app/Services/open-comment-model.service';
 
@@ -38,6 +39,7 @@ export class PostComponent implements OnInit, AfterViewInit {
   constructor(
     private openCommentModelService: OpenCommentModelService,
     private notiferService: NotifierService,
+    private logActiveService: LogActiveService,
     private logged: IsLoggedService,
     private followUnfollowService: FollowUnfollowService,
     private http: HttpClient,
@@ -113,6 +115,7 @@ export class PostComponent implements OnInit, AfterViewInit {
         message: "Please login to like this post",
         mode: "warning"
       })
+      this.logActiveService.setActive()
     }else{
       if(!liked){
         this.post.likesCount++
@@ -173,6 +176,7 @@ export class PostComponent implements OnInit, AfterViewInit {
         `Please login to follow ${affiliateName}`, 
         "warning"
       )
+      this.logActiveService.setActive()
     }else{
       this.followUnfollowService.setFollow(affiliateName)
       this.isLoading = true

@@ -124,6 +124,7 @@ nav .mini-menu{
 nav .mini-menu i{
     color: var(--primary-color);
     font-size: 2rem;
+    padding: 1rem;
 }
 
 nav .mini-menu .mini-menu-wrapper{
