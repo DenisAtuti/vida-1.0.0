@@ -56,11 +56,12 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         this.posts = response;
 
 
-        this.title.setTitle('Vida videos the new age Porn viewing and watchig');
+        this.title.setTitle('Vida videos the new age Porn viewing and watching');
         this.meta.updateTag({
           name: 'description',
           content: `vida videos the world's best porn sites of ${this.state.getYeah()}. Watch free porn videos, 
-          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
+          sex movies and premium HD porn on the most popular porn tubes. All the top porn like Hentai ,Well hung,Huge breasts,
+          Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc`,
         });
       });
 
