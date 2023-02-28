@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { finalize, Subject } from 'rxjs';
+import { AdminTemplateRemoverService } from 'src/app/Services/admin-template-remover.service';
 import { DataService } from 'src/app/Services/Data/data.service';
 import { FollowUnfollowService } from 'src/app/Services/follow-unfollow.service';
 import { IsLoggedService } from 'src/app/Services/is-logged.service';
@@ -18,6 +19,7 @@ export class PostComponent implements OnInit, AfterViewInit {
   isActive: boolean = false
   isAutoPlay: boolean = false
   isNavigator: boolean = true;
+  isAdmin: boolean = true; // this is remove the link, header and ads on admin view "keta"
   isLogged: boolean
   isLoading: boolean
   isDownloading: boolean = false;
@@ -40,6 +42,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     private openCommentModelService: OpenCommentModelService,
     private notiferService: NotifierService,
     private logActiveService: LogActiveService,
+    private adminTemplateService: AdminTemplateRemoverService,
     private logged: IsLoggedService,
     private followUnfollowService: FollowUnfollowService,
     private http: HttpClient,
@@ -52,12 +55,17 @@ export class PostComponent implements OnInit, AfterViewInit {
         this.isLogged = log
       }
     )
+    
+    this.adminTemplateService.removeTemplate().subscribe(
+      (response: boolean) => {
+        this.isAdmin = response
+      }
+    )
 
     this.isLogged = this.logged.isLogged
     this.videoId = this.post.id;
     this.affiliateName = this.post.affiliateName; 
-    // console.log(this.post)
-    // this.videoUrl = this.post.videoLocationUrl
+
     if(this.post.sharedCount - 67 <= 0 ){
       this.downloads = 19 
     }else{

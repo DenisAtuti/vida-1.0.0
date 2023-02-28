@@ -34,6 +34,9 @@
             <a (click)="navigateTo('liked')">
                 <div class="item liked">Liked</div>
             </a>
+            <a *ngIf="isAdmin" (click)="removeTemplate()">
+                <div class="item liked">Remove template</div>
+            </a>
             <div class="item logs">
                 <div *ngIf="isLoggedIn" class="logout" (click)="onLogOutBtnClicked()">
                     Logout

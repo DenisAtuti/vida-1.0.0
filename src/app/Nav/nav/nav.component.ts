@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AdminTemplateRemoverService } from 'src/app/Services/admin-template-remover.service';
 import { DataService } from 'src/app/Services/Data/data.service';
-import { MainService } from 'src/app/Services/Data/main.service';
 import { IsLoggedService } from 'src/app/Services/is-logged.service';
 import { LogActiveService } from 'src/app/Services/log-active.service';
 import { NotifierService } from 'src/app/Services/notifier.service';
@@ -15,15 +15,16 @@ import { NotifierService } from 'src/app/Services/notifier.service';
 export class NavComponent implements OnInit, OnDestroy {
   isSearchForm: boolean = true;
   isLoggedIn: boolean;
+  isAdmin: boolean = false;
   log: Subscription;
 
   constructor(
     private logActiveService: LogActiveService,
     private isLogged: IsLoggedService,
+    private adminTemplateService: AdminTemplateRemoverService,
     private dataService: DataService,
     private router: Router,
-    private notifier: NotifierService,
-    private mainService: MainService
+    private notifier: NotifierService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class NavComponent implements OnInit, OnDestroy {
       this.isLoggedIn = log;
     });
     this.getAllModelNames();
+    this.checkAdmin();
   }
 
   ngOnDestroy(): void {
@@ -39,8 +41,6 @@ export class NavComponent implements OnInit, OnDestroy {
 
   reload(){
     this.router.navigate(["/"]).then(result=>{window.location.href = 'https://www.vida-videos.com/';});
-
-    // this.mainService.reload()
   }
 
   onLoginBtnClicked(): void {
@@ -101,6 +101,17 @@ export class NavComponent implements OnInit, OnDestroy {
       this.router.navigate([`/${link}`])
     }else{
       this.displayNotifier()
+    }
+  }
+
+  removeTemplate(){
+    this.adminTemplateService.setTemplate()
+  }
+
+  checkAdmin(){
+    const admin = localStorage.getItem('user')
+    if(admin === 'keta'){
+      this.isAdmin = true
     }
   }
 

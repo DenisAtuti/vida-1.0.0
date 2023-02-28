@@ -11,7 +11,7 @@
     </div>
     <div *ngIf="isNavigator" class="navigator" (click)="toggleOpenNavigator()">      
     </div>
-    <div *ngIf="isNavigator" class="link-container">
+    <div *ngIf="isNavigator && isAdmin" class="link-container">
         <div class="profile">
             <img [src]="'https://robohash.org/' + post.affiliateName" [alt]="post.affiliateName">
         </div>
@@ -37,7 +37,7 @@
             <span>{{downloads | shortNumber}}</span>
         </div>
     </div>
-    <div *ngIf="isNavigator" class="header-container">
+    <div *ngIf="isNavigator && isAdmin" class="header-container">
         <div class="header">
             <div [title]=" 'Browse ' + post.affiliateName + ' videos'" class="name" [routerLink]="['/affiliate/model/', post.affiliateName]">
                 <h2>{{post.affiliateName}}</h2>
@@ -55,7 +55,7 @@
             <p>{{post.title}}</p>
         </div>
     </div>
-    <div class="ad-container" [class.active]="isActive" >
+    <div class="ad-container" [class.active]="isActive && isAdmin" >
         <div class="ad-wrappers">
             <div class="image" (click)="openAd(post.ad.affiliateLink, post.ad.id)">
                 <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
