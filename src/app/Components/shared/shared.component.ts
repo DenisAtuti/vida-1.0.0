@@ -58,6 +58,7 @@ export class SharedComponent implements OnInit {
           response.commentCount,
           response.sharedCount,
           true,
+          true,
           response.ad
         ) 
 

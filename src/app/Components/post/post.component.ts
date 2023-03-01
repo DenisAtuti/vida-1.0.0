@@ -19,7 +19,6 @@ export class PostComponent implements OnInit, AfterViewInit {
   isActive: boolean = false
   isAutoPlay: boolean = false
   isNavigator: boolean = true;
-  isAdmin: boolean = true; // this is remove the link, header and ads on admin view "keta"
   isLogged: boolean
   isLoading: boolean
   isDownloading: boolean = false;
@@ -58,7 +57,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     
     this.adminTemplateService.removeTemplate().subscribe(
       (response: boolean) => {
-        this.isAdmin = response
+        this.post.isAdmin = response
       }
     )
 

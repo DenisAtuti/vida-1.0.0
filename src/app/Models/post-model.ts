@@ -17,6 +17,8 @@ export class Post{
         public commentsCount:number,
         public sharedCount:number,
         public isLast:boolean,
+        public isAdmin: boolean,
         public ad: Ad
+
     ){}
 }

@@ -34,6 +34,7 @@ export class MainService {
     return new Promise<boolean>((resolve) => {
       this.data.getPosts().subscribe((posts: any[]) => {
         posts.forEach((item) => {
+          
           this.posts.push(item);
         });
         this.videosLoaded();

@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map , catchError , Observable, throwError } from 'rxjs';
 import { Post } from 'src/app/Models/post-model';
+import { AdminTemplateRemoverService } from '../admin-template-remover.service';
 import { NotifierService } from '../notifier.service';
 
 @Injectable({
@@ -11,15 +12,26 @@ import { NotifierService } from '../notifier.service';
 export class DataService {
 
   private baseUrl = 'https://socialize-backend.herokuapp.com';
+  isAdmin: boolean = true; 
 
-  constructor(
+  constructor(  
     private http: HttpClient, 
     private notifier: NotifierService,
+    private adminTemplateService: AdminTemplateRemoverService,
     private route: Router
   ) { }
 
+  checkAdmin(){
+    this.adminTemplateService.removeTemplate().subscribe(
+      (response: boolean) => {
+        this.isAdmin = response
+      }
+    )
+  }
+
   
   getAllModelNames():Observable<string[]>{
+    this.checkAdmin()
     return this.http.get<any>(`${this.baseUrl}/api/v1/affiliate/get/all/affiliate/names`)
   }
 
@@ -375,6 +387,7 @@ export class DataService {
     item.userLikes.length = this.generateStatistic(50000)
     item.commentCount = this.generateStatistic(1000)
     item.sharedCount = this.generateStatistic(1000)
+    item.isAdmin = this.isAdmin;
 
     return new Post(
       item.id, 
@@ -391,7 +404,8 @@ export class DataService {
       item.userLikes.length,
       item.commentCount,
       item.sharedCount,
-      isLast,                                                                                          
+      isLast,
+      item.isAdmin,                                                                                          
       item.ad
     )
   }
