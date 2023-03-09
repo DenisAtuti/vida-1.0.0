@@ -14,8 +14,8 @@ export class AdminTemplateRemoverService {
     return this.subject.asObservable()
   } 
 
-  setTemplate(){
-    this.subject.next(false)
+  setTemplate(isAdmin: boolean){
+    this.subject.next(isAdmin);             
   }
 
 }

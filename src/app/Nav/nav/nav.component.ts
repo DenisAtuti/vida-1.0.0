@@ -16,6 +16,7 @@ export class NavComponent implements OnInit, OnDestroy {
   isSearchForm: boolean = true;
   isLoggedIn: boolean;
   isAdmin: boolean = false;
+  isAdminActive:boolean = false;
   log: Subscription;
 
   constructor(
@@ -105,7 +106,13 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   removeTemplate(){
-    this.adminTemplateService.setTemplate()
+    this.adminTemplateService.setTemplate(this.isAdminActive)
+    this.isAdminActive = true
+  }
+
+  addTemplate(){
+    this.adminTemplateService.setTemplate(this.isAdminActive)
+    this.isAdminActive = false
   }
 
   checkAdmin(){

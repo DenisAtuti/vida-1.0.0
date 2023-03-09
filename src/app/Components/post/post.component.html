@@ -55,7 +55,7 @@
             <p>{{post.title}}</p>
         </div>
     </div>
-    <div class="ad-container" [class.active]="isActive && post.isAdmin" >
+    <div class="ad-container" [class.active]="isActive && post.isAdmin && isAdmin" >
         <div class="ad-wrappers">
             <div class="image" (click)="openAd(post.ad.affiliateLink, post.ad.id)">
                 <img [src]="post.ad.clientImageUrl" alt="post.ad.company">

@@ -17,6 +17,7 @@ import { OpenCommentModelService } from 'src/app/Services/open-comment-model.ser
 export class PostComponent implements OnInit, AfterViewInit {
 
   isActive: boolean = false
+  isAdmin: boolean = true
   isAutoPlay: boolean = false
   isNavigator: boolean = true;
   isLogged: boolean
@@ -58,6 +59,8 @@ export class PostComponent implements OnInit, AfterViewInit {
     this.adminTemplateService.removeTemplate().subscribe(
       (response: boolean) => {
         this.post.isAdmin = response
+        this.isAdmin = false
+
       }
     )
 
