@@ -58,7 +58,8 @@
     <div class="ad-container" [class.active]="isActive && post.isAdmin && isAdmin" >
         <div class="ad-wrappers">
             <div class="image" (click)="openAd(post.ad.affiliateLink, post.ad.id)">
-                <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
+                <ins class="adsbyexoclick" data-zoneid="4936208" data-keywords="keywords"></ins> 
+                <!-- <img [src]="post.ad.clientImageUrl" alt="post.ad.company"> -->
             </div>
             <div class="close" (click)="closeAd()">
                 <i class="fa-regular fa-circle-xmark"></i>
