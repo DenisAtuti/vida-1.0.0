@@ -24,6 +24,7 @@ import { MainService } from './Services/Data/main.service';
 import { SharedComponent } from './Components/shared/shared.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ShortNumberPipe } from './Pipe/short-number.pipe';
+import { AdsterraDirective } from './Directives/adsterra.directive';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ShortNumberPipe } from './Pipe/short-number.pipe';
     NotifierComponent,
     SharedComponent,
     ShortNumberPipe,
+    AdsterraDirective,
      
   ],
   imports: [
