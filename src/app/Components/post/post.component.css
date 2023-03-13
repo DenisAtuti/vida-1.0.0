@@ -202,6 +202,13 @@
     overflow: hidden;
     cursor:pointer;
 }
+.player .ad-container .ad-wrappers .image .adsterra{
+    height: 100%;
+    width:auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 .player .ad-container .ad-wrappers .image img{
     height: 100%;
 }

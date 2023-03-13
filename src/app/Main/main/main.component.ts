@@ -38,6 +38,7 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   posts: any[];
   subscription: Subscription;
   autoScrollSub: Subscription;
+  isAdActive: boolean = false;
   isLastPage: boolean = false;
   isLoading: boolean = false;
   isContent: boolean = false;
@@ -65,13 +66,17 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       });
 
-    this.mainService.canGetPostFun();
+      this.mainService.canGetPostFun();
     this.mainService.videosLoaded();
     this.mainService.unfollowLoadedAffilliate();
     this.mainService.followLoadedAffilliate();
   }
-
+  
   ngAfterViewInit() {
+    setTimeout(() => {
+      this.isAdActive = true
+    }, 5000);
+
     this.scrollFun();
     this.autoScrollFun(this.container.nativeElement);
     // this.scroll.getScrolledHeight(this.container.nativeElement, "main_scrolled_height")

@@ -31,6 +31,45 @@ app-nav{
     width: 100%;
 }
 
+/* ads section */
+
+.ads-container{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: -2rem;
+    left:0;
+    height: 0;
+    width: 95%;
+    transition: height 0.4s ;
+ 
+}
+.ads-container.active{
+    height:25%;
+    bottom: 0;
+    transition: height 0.4s;
+}
+.ads-container .adsterra{
+    position: absolute;
+    inset:0;
+}
+.ads-container .close{
+    position: absolute;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    top: -1.5rem;
+    right: -1.5rem;
+    font-size:2rem;
+    padding: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    color:var(--primary-color);
+    cursor:pointer;
+    background-color: #000;
+    border: 0.3rem solid var(--primary-color);
+    border-radius: 50%;
+}
+
 
 app-log{
     position:absolute;

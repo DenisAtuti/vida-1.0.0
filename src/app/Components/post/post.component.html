@@ -55,18 +55,20 @@
             <p>{{post.title}}</p>
         </div>
     </div>
-    <div class="ad-container" [class.active]="isActive && post.isAdmin && isAdmin" >
+    <!-- <div class="ad-container" [class.active]="isActive && post.isAdmin && isAdmin" >
         <div class="ad-wrappers">
             <div class="image" (click)="openAd(post.ad.affiliateLink, post.ad.id)">
                 <div appAdsterra class="adsterra"></div>
-                <!-- <div id="container-328c52aa897942775d14ebb6cb7a6c41"></div> -->
-                <!-- <script async="async" data-cfasync="false" src="//pl18739161.highrevenuegate.com/328c52aa897942775d14ebb6cb7a6c41/invoke.js"></script> -->
-                <!-- <ins class="adsbyexoclick" data-zoneid="4936208" data-keywords="keywords"></ins>  -->
-                <!-- <img [src]="post.ad.clientImageUrl" alt="post.ad.company"> -->
+
+                <div id="container-328c52aa897942775d14ebb6cb7a6c41"></div>
+                <script async="async" data-cfasync="false" src="//pl18739161.highrevenuegate.com/328c52aa897942775d14ebb6cb7a6c41/invoke.js"></script>
+                <ins class="adsbyexoclick" data-zoneid="4936208" data-keywords="keywords"></ins> 
+                <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
+
             </div>
             <div class="close" (click)="closeAd()">
                 <i class="fa-regular fa-circle-xmark"></i>
             </div>
         </div>
-    </div>
+    </div> -->
 </div> 

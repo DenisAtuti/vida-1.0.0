@@ -20,6 +20,7 @@ export class AppComponent implements OnInit,  AfterViewInit, OnDestroy{
   
   title = 'vida';
   isLanding: boolean = false;
+  isAdActive: boolean = false;
   landingSub: Subscription
   @ViewChild("content", {static: false}) contentEl: ElementRef;
   content:any;
@@ -41,6 +42,10 @@ export class AppComponent implements OnInit,  AfterViewInit, OnDestroy{
     this.renderer.listen(this.content, 'mouseenter' ,()=>{
       this.fullScreenOnMobile()
     })
+
+    setTimeout(() => {
+      this.isAdActive = true
+    }, 3000);
   }
 
   openLanding(){
@@ -48,7 +53,7 @@ export class AppComponent implements OnInit,  AfterViewInit, OnDestroy{
       localStorage.setItem("isLanding","true")
       this.landingService.landingSubj.next(true)
       console.log("subjecting");
-    }, 10000);
+    }, 30000);
   }
 
   fullScreenOnMobile(){
@@ -56,6 +61,13 @@ export class AppComponent implements OnInit,  AfterViewInit, OnDestroy{
       this.content.requestFullscreen()
       console.log(this.content)
     }
+  }
+
+  closeAd(){
+    this.isAdActive = false
+    setTimeout(() => {
+      this.isAdActive = true
+    }, 40000);
   }
 
 

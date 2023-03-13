@@ -22,7 +22,7 @@ import { PlayerComponent } from './Components/player/player.component';
 import { NotifierComponent } from './Components/notifier/notifier.component';
 import { MainService } from './Services/Data/main.service';
 import { SharedComponent } from './Components/shared/shared.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ShortNumberPipe } from './Pipe/short-number.pipe';
 import { AdsterraDirective } from './Directives/adsterra.directive';
 
@@ -56,7 +56,8 @@ import { AdsterraDirective } from './Directives/adsterra.directive';
     FormsModule
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: PathLocationStrategy},
+    // {provide: LocationStrategy, useClass: HashLocationStrategy}
     // {
     //   provide: APP_INITIALIZER,
     //   useFactory: initMain,
