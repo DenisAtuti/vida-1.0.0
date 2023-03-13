@@ -56,8 +56,8 @@ import { AdsterraDirective } from './Directives/adsterra.directive';
     FormsModule
   ],
   providers: [
-    {provide: LocationStrategy, useClass: PathLocationStrategy},
-    // {provide: LocationStrategy, useClass: HashLocationStrategy}
+    // {provide: LocationStrategy, useClass: PathLocationStrategy},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
     // {
     //   provide: APP_INITIALIZER,
     //   useFactory: initMain,
