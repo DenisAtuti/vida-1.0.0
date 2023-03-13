@@ -67,7 +67,7 @@ export class AppComponent implements OnInit,  AfterViewInit, OnDestroy{
     this.isAdActive = false
     setTimeout(() => {
       this.isAdActive = true
-    }, 40000);
+    }, 25000);
   }
 
 
