@@ -63,14 +63,13 @@ export class SharedComponent implements OnInit {
         ) 
 
         this.title.setTitle(
-          `vida| ${response.affiliateName} is one of the best adult and porn content creators`
+          `vida videos| watch, share and download ${response.affiliateName} short nude, amateur, tiktok, reddit, instagram and facebook videos`
         );
         this.meta.updateTag({
           name: 'description',
-          content: `vida the world's best porn sites of ${this.state.getYeah()}. Watch free ${
-            response.affiliateName
-          } porn videos, 
-              sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
+          content:  `vida videos' ${response.affiliateName} is world's best short social media adult videos creator for ${this.state.getYeah()}. Watch free ${response.affiliateName} short videos, 
+          sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
+          Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc, are available here`,
         });
 
       },

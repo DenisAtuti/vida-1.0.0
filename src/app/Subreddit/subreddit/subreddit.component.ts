@@ -64,12 +64,13 @@ export class SubredditComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       });
     this.title.setTitle(
-      `vida videos| ${subreddit} is one of the best adult and porn categories`
+      `vida videos| Watch, share and download ${subreddit} subreddit short nude, amateur, tiktok, reddit, instagram and facebook videos`
     );
     this.meta.updateTag({
       name: 'description',
-      content: `vida videos the world's best porn sites of ${this.state.getYeah()}. Watch free ${subreddit} porn videos, 
-          sex movies and premium HD porn on the most popular porn tubes. All the top porn ...`,
+      content: `vida videos ${subreddit} subreddit has best short NSFW social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
+      sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
+      Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc, are available here`,
     });
 
     this.subredditService.canGetPostFun();
