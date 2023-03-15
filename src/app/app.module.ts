@@ -17,7 +17,6 @@ import { OpenMiniMenuDirective } from './Directives/open-mini-menu.directive';
 import { PostComponent } from './Components/post/post.component';
 import { CommentComponent } from './Components/comment/comment.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
-import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { PlayerComponent } from './Components/player/player.component';
 import { NotifierComponent } from './Components/notifier/notifier.component';
 import { MainService } from './Services/Data/main.service';
@@ -41,7 +40,6 @@ import { AdsterraDirective } from './Directives/adsterra.directive';
     PostComponent,
     CommentComponent,
     ErrorPageComponent,
-    LandingPageComponent,
     PlayerComponent,
     NotifierComponent,
     SharedComponent,

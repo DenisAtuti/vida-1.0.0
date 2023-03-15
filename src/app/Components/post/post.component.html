@@ -39,36 +39,21 @@
     </div>
     <div *ngIf="isNavigator && post.isAdmin" class="header-container">
         <div class="header">
-            <div [title]=" 'Browse ' + post.affiliateName + ' videos'" class="name" [routerLink]="['/affiliate/model/', post.affiliateName]">
+            <a [title]=" 'Browse ' + post.affiliateName + ' videos'" class="name" [routerLink]="['/affiliate/model/', post.affiliateName]">
                 <h2>{{post.affiliateName}}</h2>
-            </div>
+            </a>
             <div *ngIf="post.isVerified" class="verified-icon">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
             <button [title]="'Follow ' + post.affiliateName" class="follow" *ngIf="!post.isFollowing" (click)="onFollowBtnClicked(post.affiliateName)"><span *ngIf="!isLoading">Follow</span><span *ngIf="isLoading" class="loader"></span></button>
             <button [title]="'Unfollow ' + post.affiliateName" class="following" *ngIf="post.isFollowing"  (click)="onUnfollowBtnClicked(post.affiliateName)"><span *ngIf="!isLoading">Following</span><span *ngIf="isLoading" class="loader"></span></button>
         </div>
-        <div  [routerLink]="['/subreddit/account/', post.subreddit]" [title]="'Watch similar videos on ' + post.subreddit" class="subreddit">
+        <a  [routerLink]="['/subreddit/account/', post.subreddit]" [title]="'Watch similar videos on ' + post.subreddit" class="subreddit">
             <h3><i class="fa-solid fa-folder-open"></i>{{post.subreddit}}</h3>
-        </div>
+        </a>
         <div class="description">
             <p>{{post.title}}</p>
         </div>
     </div>
-    <!-- <div class="ad-container" [class.active]="isActive && post.isAdmin && isAdmin" >
-        <div class="ad-wrappers">
-            <div class="image" (click)="openAd(post.ad.affiliateLink, post.ad.id)">
-                <div appAdsterra class="adsterra"></div>
-
-                <div id="container-328c52aa897942775d14ebb6cb7a6c41"></div>
-                <script async="async" data-cfasync="false" src="//pl18739161.highrevenuegate.com/328c52aa897942775d14ebb6cb7a6c41/invoke.js"></script>
-                <ins class="adsbyexoclick" data-zoneid="4936208" data-keywords="keywords"></ins> 
-                <img [src]="post.ad.clientImageUrl" alt="post.ad.company">
-
-            </div>
-            <div class="close" (click)="closeAd()">
-                <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-        </div>
-    </div> -->
+    
 </div> 

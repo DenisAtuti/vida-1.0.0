@@ -89,6 +89,10 @@
     padding: 1rem;
     color: #fff;
 }
+.player .header-container a{
+    text-decoration: inherit;
+    color: inherit;
+}
 
 .player .header-container .header{
     display: flex;
