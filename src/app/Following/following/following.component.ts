@@ -20,8 +20,23 @@ import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-following',
-  templateUrl: './following.component.html',
-  styleUrls: ['./following.component.css'],
+  template:`
+    <div class="content-container">
+        <div class="no-content-wrapper">
+            <div class="no-content" *ngIf="isContent">
+                <h2>There are no video posts to display, click the button below</h2>
+                <button routerLink="/">Home</button>
+            </div>
+            <div class="post-loader" *ngIf="isLoading"></div>  
+        </div>
+        <div class="post-container" #container>
+            <div class="post" *ngFor="let post of posts">
+                <app-post [post] = "post" [componentPage]="componentPage"></app-post>
+            </div>  
+        </div>
+        
+    </div>
+  `
 })
 export class FollowingComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(

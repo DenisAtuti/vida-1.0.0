@@ -21,8 +21,23 @@ import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-affiliate',
-  templateUrl: './affiliate.component.html',
-  styleUrls: ['./affiliate.component.css'],
+  template:`
+  <div class="content-container">
+      <div class="no-content-wrapper">
+          <div class="no-content" *ngIf="isContent">
+              <h2>{{affiliate}} hasn't posted yet</h2> 
+              <button routerLink="/">Home</button>
+          </div>
+          <div class="post-loader" *ngIf="isLoading"></div>  
+      </div>
+      <div class="post-container" #container>
+          <div class="post" *ngFor="let post of posts">
+              <app-post [post] = "post" [componentPage]="componentPage"></app-post>
+          </div>  
+      </div>
+      
+  </div>
+  `
 })
 export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
