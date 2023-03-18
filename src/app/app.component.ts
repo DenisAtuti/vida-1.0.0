@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { IsLoggedService } from './Services/is-logged.service';
 import { SetScrolledHeightService } from './Services/set-scrolled-height.service';
 
