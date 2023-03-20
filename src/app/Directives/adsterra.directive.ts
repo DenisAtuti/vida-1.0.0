@@ -46,6 +46,7 @@ export class AdsterraDirective implements AfterViewInit  {
     nativeAdEl.setAttribute("href","https://t.adtng2.com/228803/3785/0?bo=2753,2754,2755,2756&pyt=multi&po=6456");
     nativeAdEl.setAttribute("target","_blank");
     nativeAdEl.style.inset = '0';
+    nativeAdEl.style.height = '100%';
     nativeAdEl.style.display = 'flex';
     nativeAdEl.style.justifyContent = 'center';
     nativeAdEl.style.alignItems = 'center';  
@@ -55,7 +56,7 @@ export class AdsterraDirective implements AfterViewInit  {
     nativeAdImage.alt = "This is an add"
     nativeAdImage.style.height = '100%';
     nativeAdImage.style.width = 'auto';
-    nativeAdImage.style.objectFit = 'contain';
+    nativeAdImage.style.objectFit = 'cover';
 
 
     nativeAdEl.appendChild(nativeAdImage); 
