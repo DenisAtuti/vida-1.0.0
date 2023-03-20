@@ -41,7 +41,7 @@ app-nav{
     height: 0;
     width: 95%;
     transition: height 0.4s ;
- 
+    
 }
 .ads-container.active{
     height:25%;
@@ -51,7 +51,12 @@ app-nav{
 .ads-container .adsterra{
     position: absolute;
     inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow: hidden
 }
+
 .ads-container .close{
     position: absolute;
     display: flex;
