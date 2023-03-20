@@ -25,6 +25,8 @@ export class AdsterraDirective implements AfterViewInit  {
     scriptEl.setAttribute("data-cfasync","false")
     adEl.id = "container-328c52aa897942775d14ebb6cb7a6c41"
     adEl.className = "ads-container"
+    adEl.style.backgroundColor = '#000';  
+    adEl.style.color = '#fff'; 
 
     templateEl.appendChild(scriptEl)
 
@@ -50,6 +52,8 @@ export class AdsterraDirective implements AfterViewInit  {
     nativeAdEl.style.display = 'flex';
     nativeAdEl.style.justifyContent = 'center';
     nativeAdEl.style.alignItems = 'center';  
+    nativeAdEl.style.backgroundColor = '#000';  
+    nativeAdEl.style.color = '#fff';  
     
     const nativeAdImage = document.createElement("img")
     nativeAdImage.setAttribute("src",`https://vida-videos.com/uploads/images/vida-${this.getRandomNumber()}.gif`)
