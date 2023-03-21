@@ -45,7 +45,7 @@ export class AdsterraDirective implements AfterViewInit  {
 
   createNativeAd(){
     const nativeAdEl = document.createElement("a")
-    nativeAdEl.setAttribute("href","https://t.adtng2.com/228803/3785/0?bo=2753,2754,2755,2756&pyt=multi&po=6456");
+    nativeAdEl.setAttribute("href","https://weakermumrespect.com/qv905grx?key=be9d6988c6876b6c623e1c8612170918");
     nativeAdEl.setAttribute("target","_blank");
     nativeAdEl.style.inset = '0';
     nativeAdEl.style.height = '100%';
