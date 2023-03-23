@@ -21,23 +21,22 @@ import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-affiliate',
-  template:`
-  <div class="content-container">
+  template: `
+    <div class="content-container">
       <div class="no-content-wrapper">
-          <div class="no-content" *ngIf="isContent">
-              <h2>{{affiliate}} hasn't posted yet</h2> 
-              <button routerLink="/">Home</button>
-          </div>
-          <div class="post-loader" *ngIf="isLoading"></div>  
+        <div class="no-content" *ngIf="isContent">
+          <h2>{{ affiliate }} hasn't posted yet</h2>
+          <button routerLink="/">Home</button>
+        </div>
+        <div class="post-loader" *ngIf="isLoading"></div>
       </div>
       <div class="post-container" #container>
-          <div class="post" *ngFor="let post of posts">
-              <app-post [post] = "post" [componentPage]="componentPage"></app-post>
-          </div>  
+        <div class="post" *ngFor="let post of posts">
+          <app-post [post]="post" [componentPage]="componentPage"></app-post>
+        </div>
       </div>
-      
-  </div>
-  `
+    </div>
+  `,
 })
 export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
@@ -84,15 +83,32 @@ export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
       });
-    this.title.setTitle(
-      `vida videos| watch, share and download ${this.affiliate} short nude, amateur, tiktok, reddit, instagram and facebook videos`
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content: `vida videos' ${this.affiliate} is world's best short social media adult videos creator for ${this.state.getYeah()}. Watch free  ${this.affiliate} short videos, 
-      sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
-      Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc, are available here`,
-    });
+
+    const seoTitle =`vida videos| watch, share and download ${this.affiliate} short nude, porn, amateur, tiktok, reddit, instagram and facebook videos`;
+    const seoDescription = `vida videos ${this.affiliate} short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
+        sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
+        Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc , are available here`;
+    const seoImage = 'https://vida-videos.com/uploads/images/vida-1.gif';
+    const seoUrl = `/affiliate/model/${this.affiliate}`;
+    
+    this.title.setTitle(seoTitle);
+    this.meta.addTags([
+      { name: 'description', content: seoDescription },
+      // Facebook Meta Tags
+      { name: 'og:url', content: seoUrl },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:title', content: seoTitle },
+      { name: 'og:description', content: seoDescription },
+      { name: 'og:image', content: seoImage },
+
+      // Twitter Meta Tags
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:domain', content: 'vida-videos.com' },
+      { name: 'twitter:url', content: seoUrl },
+      { name: 'twitter:title', content: seoTitle },
+      { name: 'twitter:description', content: seoDescription },
+      { name: 'twitter:image', content: seoImage },
+    ]);
 
     this.afiliateService.canGetPostFun();
     this.afiliateService.unfollowLoadedAffilliate();

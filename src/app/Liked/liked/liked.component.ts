@@ -19,23 +19,22 @@ import { StateService } from 'src/app/Services/State/state.service';
 
 @Component({
   selector: 'app-liked',
-  template:`
+  template: `
     <div class="content-container">
-        <div class="no-content-wrapper">
-            <div class="no-content" *ngIf="isContent">
-                <h2>There are no video posts to display, click the button below</h2>
-                <button routerLink="/">Home</button>
-            </div>
-            <div class="post-loader" *ngIf="isLoading"></div>  
+      <div class="no-content-wrapper">
+        <div class="no-content" *ngIf="isContent">
+          <h2>There are no video posts to display, click the button below</h2>
+          <button routerLink="/">Home</button>
         </div>
-        <div class="post-container" #container>
-            <div class="post" *ngFor="let post of posts">
-                <app-post [post] = "post" [componentPage]="componentPage"></app-post>
-            </div>  
+        <div class="post-loader" *ngIf="isLoading"></div>
+      </div>
+      <div class="post-container" #container>
+        <div class="post" *ngFor="let post of posts">
+          <app-post [post]="post" [componentPage]="componentPage"></app-post>
         </div>
-        
+      </div>
     </div>
-  `
+  `,
 })
 export class LikedComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
@@ -76,13 +75,32 @@ export class LikedComponent implements OnInit, AfterViewInit, OnDestroy {
         console.log(posts);
       });
 
-    this.title.setTitle(`vida videos| Watch, share and download the most liked short nude, amateur, tiktok, reddit, instagram and facebook videos`);
-    this.meta.updateTag({
-      name: 'description',
-      content: `vida videos the world's best short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
-      sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
-      Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc, are available here`
-    });
+    const seoTitle =
+      'watch, share and download short nude, porn, amateur, tiktok, reddit, instagram and facebook videos';
+    const seoDescription = `vida videos the world's best short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
+        sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
+        Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc , are available here`;
+    const seoImage = 'https://vida-videos.com/uploads/images/vida-1.gif';
+    const seoUrl = '/liked';
+
+    this.title.setTitle(seoTitle);
+    this.meta.addTags([
+      { name: 'description', content: seoDescription },
+      // Facebook Meta Tags
+      { name: 'og:url', content: seoUrl },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:title', content: seoTitle },
+      { name: 'og:description', content: seoDescription },
+      { name: 'og:image', content: seoImage },
+
+      // Twitter Meta Tags
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:domain', content: 'vida-videos.com' },
+      { name: 'twitter:url', content: seoUrl },
+      { name: 'twitter:title', content: seoTitle },
+      { name: 'twitter:description', content: seoDescription },
+      { name: 'twitter:image', content: seoImage },
+    ]);
 
     this.likedService.canGetPostFun();
     this.likedService.isVideosLoaded();
