@@ -159,6 +159,7 @@ export class SubredditComponent implements OnInit, AfterViewInit, OnDestroy {
           header: 'Warning',
           message: 'This is the last post',
           mode: 'warning',
+          
         });
       }
     }
