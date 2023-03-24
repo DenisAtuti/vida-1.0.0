@@ -92,23 +92,22 @@ export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
     const seoUrl = `/affiliate/model/${this.affiliate}`;
     
     this.title.setTitle(seoTitle);
-    this.meta.addTags([
-      { name: 'description', content: seoDescription },
-      // Facebook Meta Tags
-      { name: 'og:url', content: seoUrl },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:title', content: seoTitle },
-      { name: 'og:description', content: seoDescription },
-      { name: 'og:image', content: seoImage },
+    this.meta.updateTag({ name: 'description', content: seoDescription })
 
-      // Twitter Meta Tags
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:domain', content: 'vida-videos.com' },
-      { name: 'twitter:url', content: seoUrl },
-      { name: 'twitter:title', content: seoTitle },
-      { name: 'twitter:description', content: seoDescription },
-      { name: 'twitter:image', content: seoImage },
-    ]);
+         // Facebook Meta Tags 
+    this.meta.updateTag({ property: "og:url", content: seoUrl })
+    this.meta.updateTag({ name: "og:type", content:"website" })
+    this.meta.updateTag({ property:"og:title",content:seoTitle })
+    this.meta.updateTag({ property: "og:description", content: seoDescription })
+    this.meta.updateTag({ property: "og:image", content: seoImage })
+
+        // Twitter Meta Tags
+    this.meta.updateTag({ property: "twitter:card", content:"summary_large_image" })
+    this.meta.updateTag({ property: "twitter:domain", content: "vida-videos.com" })
+    this.meta.updateTag({ property: "twitter:url", content: seoUrl })
+    this.meta.updateTag({ property: "twitter:title", content:seoTitle })
+    this.meta.updateTag({ property: "twitter:description", content: seoDescription })
+    this.meta.updateTag({ property: "twitter:image", content: seoImage })
 
     this.afiliateService.canGetPostFun();
     this.afiliateService.unfollowLoadedAffilliate();
