@@ -1,7 +1,9 @@
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
   OnDestroy,
   OnInit,
   Output,
@@ -39,6 +41,7 @@ import { StateService } from 'src/app/Services/State/state.service';
 })
 export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private mainService: MainService,
     private renderer: Renderer2,
     private scroll: SetScrolledHeightService,
@@ -61,7 +64,7 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('container', { static: true }) container: ElementRef;
 
   ngOnInit(): void {
-    this.isLoading = true;
+    this.isLoading = true;  
     this.mainService.loadedVideos = 0; //this is to ensure on init submissino of complete always inicciated
     this.mainService.getPostsFromServer();
     this.subscription = this.mainService
@@ -71,12 +74,14 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         if (response.length === 0) this.isContent = true;
         this.posts = response;
 
+        const domain = `https://www.${this.document.location.hostname}.com`
+
         const seoTitle = "watch, share and download short nude, porn, amateur, tiktok, reddit, instagram and facebook videos"
         const seoDescription = `vida videos the world's best short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
         sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
         Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc , are available here`
         const seoImage = "https://vida-videos.com/uploads/images/vida-1.gif"
-        const seoUrl = "/"
+        const seoUrl = domain
 
         this.title.setTitle(seoTitle);
         this.meta.updateTag({ name: 'description', content: seoDescription })
@@ -90,7 +95,7 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
 
         // Twitter Meta Tags
         this.meta.updateTag({ property: "twitter:card", content:"summary_large_image" })
-        this.meta.updateTag({ property: "twitter:domain", content: "vida-videos.com" })
+        this.meta.updateTag({ property: "twitter:domain", content: domain })
         this.meta.updateTag({ property: "twitter:url", content: seoUrl })
         this.meta.updateTag({ property: "twitter:title", content:seoTitle })
         this.meta.updateTag({ property: "twitter:description", content: seoDescription })
@@ -150,6 +155,8 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       });
   }
+
+
 
   determineLastPage(event) {
     const container = event.target;

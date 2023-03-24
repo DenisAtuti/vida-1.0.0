@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/Models/post-model';
@@ -12,6 +13,7 @@ import { StateService } from 'src/app/Services/State/state.service';
 })
 export class SharedComponent implements OnInit {
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private route: ActivatedRoute,
     private data: DataService,
     private title: Title,
@@ -61,6 +63,8 @@ export class SharedComponent implements OnInit {
           response.ad
         );
 
+        const domain = `https://www.${this.document.location.hostname}.com`
+
         const seoTitle = `vida videos| watch, share and download ${response.affiliateName} short nude, porn, amateur, tiktok, reddit, instagram and facebook videos`;
         const seoDescription = `vida videos' ${
           response.affiliateName
@@ -70,7 +74,7 @@ export class SharedComponent implements OnInit {
         sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
         Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc, are available here`;
         const seoImage = 'https://vida-videos.com/uploads/images/vida-1.gif';
-        const seoUrl = `/shared/post/${videoId}`;
+        const seoUrl = `${domain}/#/shared/post/${videoId}`;
 
         this.title.setTitle(seoTitle);
         this.meta.updateTag({ name: 'description', content: seoDescription })
@@ -84,7 +88,7 @@ export class SharedComponent implements OnInit {
 
         // Twitter Meta Tags
         this.meta.updateTag({ property: "twitter:card", content:"summary_large_image" })
-        this.meta.updateTag({ property: "twitter:domain", content: "vida-videos.com" })
+        this.meta.updateTag({ property: "twitter:domain", content: domain})
         this.meta.updateTag({ property: "twitter:url", content: seoUrl })
         this.meta.updateTag({ property: "twitter:title", content:seoTitle })
         this.meta.updateTag({ property: "twitter:description", content: seoDescription })

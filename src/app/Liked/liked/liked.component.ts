@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
   OnDestroy,
   OnInit,
   Output,
@@ -16,6 +17,7 @@ import { SetScrolledHeightService } from 'src/app/Services/set-scrolled-height.s
 import { AutoScrollService } from 'src/app/Services/auto-scroll.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { StateService } from 'src/app/Services/State/state.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-liked',
@@ -38,6 +40,7 @@ import { StateService } from 'src/app/Services/State/state.service';
 })
 export class LikedComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private likedService: LikedService,
     private renderer: Renderer2,
     private notifier: NotifierService,
@@ -75,13 +78,15 @@ export class LikedComponent implements OnInit, AfterViewInit, OnDestroy {
         console.log(posts);
       });
 
+    const domain = `https://www.${this.document.location.hostname}.com`
+
     const seoTitle =
       'watch, share and download short nude, porn, amateur, tiktok, reddit, instagram and facebook videos';
     const seoDescription = `vida videos the world's best short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
         sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
         Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc , are available here`;
     const seoImage = 'https://vida-videos.com/uploads/images/vida-1.gif';
-    const seoUrl = '/liked';
+    const seoUrl = `${domain}/#/liked`;
 
     this.title.setTitle(seoTitle);
     this.meta.updateTag({ name: 'description', content: seoDescription })
@@ -95,7 +100,7 @@ export class LikedComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Twitter Meta Tags
     this.meta.updateTag({ property: "twitter:card", content:"summary_large_image" })
-    this.meta.updateTag({ property: "twitter:domain", content: "vida-videos.com" })
+    this.meta.updateTag({ property: "twitter:domain", content: domain })
     this.meta.updateTag({ property: "twitter:url", content: seoUrl })
     this.meta.updateTag({ property: "twitter:title", content:seoTitle })
     this.meta.updateTag({ property: "twitter:description", content: seoDescription })
