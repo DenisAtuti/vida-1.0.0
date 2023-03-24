@@ -87,7 +87,7 @@ export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       });
 
-    const domain = `https://www.${this.document.location.hostname}.com`
+    const domain = `https://www.${this.document.location.hostname}`
 
     const seoTitle =`vida videos| watch, share and download ${this.affiliate} short nude, porn, amateur, tiktok, reddit, instagram and facebook videos`;
     const seoDescription = `vida videos ${this.affiliate} short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 

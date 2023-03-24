@@ -74,7 +74,7 @@ export class FollowingComponent implements OnInit, AfterViewInit, OnDestroy {
         if (posts.length === 0) this.isContent = true;
       });
 
-      const domain = `https://www.${this.document.location.hostname}.com`
+      const domain = `https://www.${this.document.location.hostname}`
 
       const seoTitle =
       'watch, share and download short nude, porn, amateur, tiktok, reddit, instagram and facebook videos';

@@ -81,7 +81,7 @@ export class SubredditComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       });
 
-    const domain = `https://www.${this.document.location.hostname}.com`
+    const domain = `https://www.${this.document.location.hostname}`
 
     const seoTitle = `vida videos| Watch, share and download ${subreddit} subreddit short nude, amateur, tiktok, reddit, instagram and facebook videos`;
     const seoDescription = `vida videos ${subreddit} subreddit has best short NSFW social media adult videos for ${this.state.getYeah()}. Watch free short videos, 

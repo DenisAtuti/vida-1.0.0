@@ -74,7 +74,7 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         if (response.length === 0) this.isContent = true;
         this.posts = response;
 
-        const domain = `https://www.${this.document.location.hostname}.com`
+        const domain = `https://www.${this.document.location.hostname}`
 
         const seoTitle = "watch, share and download short nude, porn, amateur, tiktok, reddit, instagram and facebook videos"
         const seoDescription = `vida videos the world's best short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 

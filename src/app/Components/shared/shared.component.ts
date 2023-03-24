@@ -63,7 +63,7 @@ export class SharedComponent implements OnInit {
           response.ad
         );
 
-        const domain = `https://www.${this.document.location.hostname}.com`
+        const domain = `https://www.${this.document.location.hostname}`
 
         const seoTitle = `vida videos| watch, share and download ${response.affiliateName} short nude, porn, amateur, tiktok, reddit, instagram and facebook videos`;
         const seoDescription = `vida videos' ${
