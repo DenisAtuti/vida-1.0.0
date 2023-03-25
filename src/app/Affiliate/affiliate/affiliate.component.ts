@@ -90,9 +90,7 @@ export class AffiliateComponent implements OnInit, AfterViewInit, OnDestroy {
     const domain = `https://www.${this.document.location.hostname}`
 
     const seoTitle =`vida videos| watch, share and download ${this.affiliate} short nude, porn, amateur, tiktok, reddit, instagram and facebook videos`;
-    const seoDescription = `vida videos ${this.affiliate} short social media adult videos for ${this.state.getYeah()}. Watch free short videos, 
-        sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,
-        Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc , are available here`;
+    const seoDescription = `vida videos ${this.affiliate} short social media adult videos for ${this.state.getYeah()}. Watch free short videos, sex movies and premium HD short videos on the most popular porn and adult tubes, tiktok, instagram and facebook. All the top short videos like Hentai,Huge breasts,Anal, Ebony,Mature, Teen,Amateur,MILF,Lesbian etc , are available here`;
     const seoImage = 'https://vida-videos.com/uploads/images/vida-1.gif';
     const seoUrl = `${domain}/#/affiliate/model/${this.affiliate}`;
     
